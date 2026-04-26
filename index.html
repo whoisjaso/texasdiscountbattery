@@ -205,7 +205,13 @@
   </script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Anton&family=DM+Serif+Display:ital@0;1&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Serif+Display:ital@0;1&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <!--
+    Huashu design pass:
+    - Context: real Texas Discount Battery logo assets, red/blue/silver identity, Houston/Hobby Airport local service proof.
+    - Direction: refined industrial service brand, not crypto-futurism; premium trust through clarity, proof, and calm motion.
+    - Neuro/conversion frame: reduce uncertainty first, show social proof second, keep primary actions always obvious.
+  -->
   <style>
     :root {
       --ink: #06101f;
@@ -1516,6 +1522,508 @@
       .footer-grid { grid-template-columns: 1fr; }
       .footer-bottom { flex-direction: column; }
     }
+
+    /* Huashu premium makeover layer */
+    :root {
+      --ink: #07090d;
+      --ink-2: #0d1218;
+      --ink-3: #151d28;
+      --ink-4: #202b3a;
+      --white: #f7f4ee;
+      --white-2: #ebe5db;
+      --paper: #f3f0e8;
+      --paper-2: #fffdfa;
+      --silver: #c9c5bb;
+      --silver-2: #989891;
+      --silver-3: #62676f;
+      --blue: #0b3fb4;
+      --blue-2: #245fdf;
+      --blue-deep: #061f68;
+      --red: #c50d2f;
+      --red-2: #e11d3f;
+      --red-deep: #8d0922;
+      --line: rgba(235, 229, 219, 0.14);
+      --line-strong: rgba(235, 229, 219, 0.28);
+      --shadow: rgba(0, 0, 0, 0.48);
+      --surface: rgba(12, 17, 24, 0.72);
+      --surface-2: rgba(16, 23, 33, 0.84);
+      --surface-light: rgba(255, 253, 250, 0.94);
+      --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+      --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+
+    html { scroll-padding-top: 104px; }
+    body {
+      background:
+        linear-gradient(180deg, rgba(36,95,223,0.10), transparent 24%),
+        linear-gradient(115deg, rgba(197,13,47,0.08), transparent 36%),
+        linear-gradient(180deg, #080a0f 0%, #0b1118 46%, #090d13 100%);
+      color: var(--white);
+      font-family: Manrope, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      z-index: -1;
+      pointer-events: none;
+      background:
+        linear-gradient(rgba(255,255,255,0.035) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+      background-size: 92px 92px;
+      mask-image: linear-gradient(180deg, #000 0%, transparent 74%);
+      opacity: 0.26;
+    }
+    .display {
+      font-family: "Bebas Neue", Impact, sans-serif;
+      letter-spacing: 0.012em;
+      line-height: 0.94;
+    }
+    .chrome {
+      background: linear-gradient(180deg, #ffffff 0%, #eee9df 32%, #b8b5ad 70%, #fffaf0 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+    }
+    .stroke { -webkit-text-stroke: 1.1px rgba(247,244,238,0.9); }
+
+    .nav {
+      top: 16px;
+      max-width: 1380px;
+      grid-template-columns: minmax(180px, 0.68fr) minmax(500px, 1.7fr) minmax(230px, 0.72fr);
+      padding: 8px 14px 8px 16px;
+      background: rgba(247,244,238,0.86);
+      border-color: rgba(255,255,255,0.64);
+      box-shadow: 0 18px 70px rgba(0,0,0,0.22);
+    }
+    .nav.scrolled {
+      top: 10px;
+      background: rgba(247,244,238,0.95);
+      box-shadow: 0 16px 54px rgba(0,0,0,0.26);
+    }
+    .brand-mark {
+      width: clamp(168px, 14vw, 214px);
+      height: clamp(48px, 4.6vw, 58px);
+    }
+    .nav-links {
+      font-size: 13px;
+      font-weight: 800;
+      color: #1d2633;
+      letter-spacing: 0.01em;
+    }
+    .lang-toggle { background: rgba(8,10,15,0.035); border-color: rgba(8,10,15,0.1); }
+    .lang-toggle button.active {
+      background: #0b3fb4;
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.22);
+    }
+    .nav-call,
+    .btn {
+      min-height: 44px;
+      padding: 12px 19px;
+      font-weight: 800;
+      transition:
+        transform 0.58s var(--ease-out),
+        background 0.58s var(--ease-out),
+        border-color 0.58s var(--ease-out),
+        color 0.58s var(--ease-out),
+        box-shadow 0.58s var(--ease-out);
+    }
+    .nav-call:hover,
+    .btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 18px 46px rgba(197,13,47,0.28);
+    }
+
+    .hero {
+      min-height: min(980px, 100svh);
+      isolation: isolate;
+      justify-content: center;
+      padding: 138px 32px 54px;
+      background:
+        linear-gradient(180deg, rgba(255,253,250,0.03), transparent 42%),
+        linear-gradient(120deg, rgba(36,95,223,0.14), transparent 34%),
+        linear-gradient(245deg, rgba(197,13,47,0.13), transparent 38%);
+    }
+    .hero::before {
+      opacity: 0.12;
+      background-size: 128px 128px;
+      mask-image: radial-gradient(ellipse 76% 56% at 50% 46%, #000 12%, transparent 78%);
+    }
+    .hero::after { opacity: 0.018; }
+    .hero-asset { opacity: 0; }
+    .hero-system {
+      position: absolute;
+      inset: 124px 0 auto;
+      height: min(46vh, 430px);
+      z-index: 1;
+      pointer-events: none;
+      display: grid;
+      place-items: center;
+      opacity: 0.46;
+      transform: translateY(0);
+    }
+    .energy-frame {
+      position: relative;
+      width: min(920px, 78vw);
+      height: min(390px, 42vh);
+      transform: perspective(1300px) rotateX(58deg) rotateZ(-6deg) translateY(-28px);
+      transform-style: preserve-3d;
+    }
+    .energy-frame::before,
+    .energy-frame::after {
+      content: "";
+      position: absolute;
+      inset: 20% 4%;
+      border: 1px solid rgba(235,229,219,0.16);
+      transform: translateZ(-50px);
+    }
+    .energy-frame::after {
+      inset: 8% 14%;
+      border-color: rgba(36,95,223,0.28);
+      transform: translateZ(-20px);
+    }
+    .battery-object {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      width: min(460px, 42vw);
+      height: clamp(118px, 12vw, 150px);
+      transform: translate(-50%, -50%) translateZ(88px);
+      filter: drop-shadow(0 42px 80px rgba(0,0,0,0.38));
+    }
+    .battery-face {
+      position: absolute;
+      inset: 0;
+      display: grid;
+      place-items: center;
+      overflow: hidden;
+      border-radius: 8px;
+      background:
+        linear-gradient(90deg, rgba(255,255,255,0.08), transparent 16%, rgba(255,255,255,0.12) 52%, transparent 78%),
+        linear-gradient(135deg, rgba(255,253,250,0.92), rgba(219,216,207,0.84));
+      border: 1px solid rgba(255,255,255,0.62);
+      box-shadow:
+        inset 0 1px 0 rgba(255,255,255,0.78),
+        inset 0 -18px 34px rgba(8,10,15,0.08),
+        0 28px 80px rgba(0,0,0,0.28);
+    }
+    .battery-face img {
+      width: min(420px, 72%);
+      opacity: 0.96;
+      filter: saturate(1.04) contrast(1.04);
+    }
+    .battery-sheen {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(105deg, transparent 0 36%, rgba(255,255,255,0.48) 48%, transparent 60% 100%);
+      transform: translateX(-100%);
+      animation: sheenSweep 7.6s var(--ease-out) infinite;
+    }
+    @keyframes sheenSweep {
+      0%, 52% { transform: translateX(-110%); opacity: 0; }
+      60% { opacity: 0.55; }
+      76%, 100% { transform: translateX(116%); opacity: 0; }
+    }
+    .battery-terminal {
+      position: absolute;
+      top: 34px;
+      width: 34px;
+      height: 84px;
+      border-radius: 5px;
+      background: linear-gradient(180deg, #f7f4ee, #9d9a92);
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.8);
+    }
+    .terminal-left { left: -32px; }
+    .terminal-right { right: -32px; }
+    .charge-meter {
+      position: absolute;
+      left: 22px;
+      right: 22px;
+      bottom: 16px;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 8px;
+    }
+    .charge-meter span {
+      height: 4px;
+      border-radius: 99px;
+      background: linear-gradient(90deg, var(--blue-2), var(--red-2));
+      transform-origin: left;
+      animation: chargePulse 3.8s var(--ease-out) infinite;
+    }
+    .charge-meter span:nth-child(2) { animation-delay: 0.16s; }
+    .charge-meter span:nth-child(3) { animation-delay: 0.32s; }
+    .charge-meter span:nth-child(4) { animation-delay: 0.48s; }
+    @keyframes chargePulse {
+      0%, 100% { transform: scaleX(0.36); opacity: 0.36; }
+      44%, 70% { transform: scaleX(1); opacity: 1; }
+    }
+    .signal-line {
+      position: absolute;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(247,244,238,0.56), transparent);
+      transform: translateZ(12px);
+      opacity: 0.46;
+    }
+    .line-a { left: 4%; right: 8%; top: 28%; }
+    .line-b { left: 12%; right: 2%; top: 50%; background: linear-gradient(90deg, transparent, rgba(36,95,223,0.58), transparent); }
+    .line-c { left: 2%; right: 18%; top: 72%; background: linear-gradient(90deg, transparent, rgba(225,29,63,0.48), transparent); }
+
+    .hero-title,
+    .hero-copy,
+    .hero-actions,
+    .hero-address-link,
+    .hero-foot { z-index: 3; }
+    .hero-title {
+      max-width: 8.6ch;
+      margin-top: 54px;
+      margin-bottom: 22px;
+      font-size: clamp(86px, 11.6vw, 174px);
+      text-shadow: 0 34px 70px rgba(0,0,0,0.26);
+    }
+    .hero-title .line { padding: 0.035em 0.06em 0.025em; }
+    .hero-title .line span {
+      filter: blur(16px);
+      animation-duration: 1.55s;
+    }
+    .hero-copy {
+      max-width: 760px;
+      color: rgba(247,244,238,0.86);
+      font-size: clamp(19px, 1.5vw, 23px);
+    }
+    .hero-actions { margin-top: 30px; }
+    .hero-address-link {
+      color: rgba(235,229,219,0.82);
+      border-bottom-color: rgba(235,229,219,0.32);
+    }
+    .hero-foot {
+      width: min(1060px, 100%);
+      margin-top: 56px;
+      border-color: rgba(235,229,219,0.18);
+      background: rgba(255,253,250,0.06);
+      box-shadow: 0 38px 100px rgba(0,0,0,0.28);
+    }
+    .hero-foot > div {
+      min-height: 132px;
+      background: rgba(13,18,24,0.72);
+    }
+    .fact-label,
+    .section-kicker,
+    .card-kicker,
+    .footer-col h3 {
+      font-family: Manrope, system-ui, sans-serif;
+      letter-spacing: 0.04em;
+      color: var(--red-2);
+    }
+    .fact-value { font-family: "Bebas Neue", Impact, sans-serif; letter-spacing: 0.01em; }
+
+    .marquee {
+      background: rgba(247,244,238,0.94);
+      border-color: rgba(8,10,15,0.08);
+    }
+    .marquee-track { color: #5b6470; }
+    .marquee-track span:nth-child(4n + 1) { color: #0b1118; }
+
+    .section { padding: 118px 32px; }
+    .section-head {
+      max-width: 1120px;
+      margin-bottom: 62px;
+      border-bottom-color: rgba(235,229,219,0.16);
+    }
+    .section-title {
+      font-size: clamp(58px, 7vw, 108px);
+      line-height: 0.94;
+    }
+    .section-lede {
+      font-size: clamp(17px, 1.3vw, 20px);
+      color: rgba(235,229,219,0.72);
+    }
+
+    #service,
+    .answer-section {
+      background:
+        linear-gradient(180deg, rgba(255,255,255,0.72), rgba(255,255,255,0.3)),
+        var(--paper);
+      color: #090d13;
+    }
+    #service .section-head,
+    .answer-section .section-head { border-bottom-color: rgba(8,10,15,0.12); }
+    #service .section-lede,
+    .answer-section .section-lede,
+    .answer-card p { color: #4f5966; }
+    #service .section-title,
+    .answer-section .section-title { color: #0b1118; }
+    #service .service-card {
+      min-height: 350px;
+      background:
+        linear-gradient(180deg, rgba(255,255,255,0.92), rgba(247,244,238,0.86));
+      color: #0b1118;
+      border-color: rgba(8,10,15,0.1);
+      box-shadow: 0 22px 70px rgba(8,10,15,0.08);
+    }
+    #service .service-card::before {
+      background: linear-gradient(180deg, rgba(8,10,15,0.94), rgba(21,29,40,0.96));
+    }
+    #service .service-card p { color: #4f5966; }
+    #service .service-card .card-kicker { color: var(--red-2); }
+    #service .service-card:hover {
+      color: var(--white);
+      border-color: rgba(8,10,15,0.22);
+      box-shadow: 0 32px 90px rgba(8,10,15,0.18);
+    }
+    #service .service-card:hover .card-kicker,
+    #service .service-card:hover p { color: rgba(247,244,238,0.86); }
+    .service-card,
+    .answer-card,
+    .review-card,
+    .crew-card,
+    .local-footprint,
+    .hero-foot { border-radius: 8px; }
+
+    .specs {
+      background:
+        linear-gradient(120deg, rgba(36,95,223,0.12), transparent 36%),
+        linear-gradient(245deg, rgba(197,13,47,0.11), transparent 42%),
+        #0a0f16;
+    }
+    .big-score { text-shadow: 0 26px 74px rgba(0,0,0,0.28); }
+    .stats-row { border-top-color: rgba(235,229,219,0.14); }
+
+    .answer-card {
+      background: rgba(255,253,250,0.86);
+      border-color: rgba(8,10,15,0.1);
+      box-shadow: 0 20px 70px rgba(8,10,15,0.08);
+    }
+    .answer-card:hover {
+      background: #fffdfa;
+      border-color: rgba(8,10,15,0.2);
+      box-shadow: 0 28px 88px rgba(8,10,15,0.13);
+    }
+    .answer-label { color: var(--red); }
+    .local-footprint {
+      background: #0b1118;
+      border-color: rgba(8,10,15,0.1);
+      color: var(--white);
+      box-shadow: 0 24px 80px rgba(8,10,15,0.16);
+    }
+
+    .reviews-wrap::before { background: linear-gradient(90deg, #090d13, transparent); }
+    .reviews-wrap::after { background: linear-gradient(270deg, #090d13, transparent); }
+    .review-card {
+      background: rgba(17,24,34,0.74);
+      border-color: rgba(235,229,219,0.14);
+    }
+    .review-quote { color: rgba(247,244,238,0.92); }
+
+    .crew-card {
+      background:
+        linear-gradient(180deg, rgba(24,32,44,0.78), rgba(10,15,22,0.9)),
+        linear-gradient(135deg, rgba(255,253,250,0.035), transparent 38%);
+    }
+    .crew-card::before {
+      background: linear-gradient(to top, rgba(7,9,13,0.96), transparent 64%);
+    }
+    .portrait-note {
+      border-color: rgba(235,229,219,0.16);
+      background: rgba(247,244,238,0.08);
+    }
+
+    .process-row {
+      grid-template-columns: 90px minmax(220px, 0.9fr) minmax(300px, 1.25fr) 140px;
+      border-top-color: rgba(235,229,219,0.14);
+    }
+    .process-row:hover { background: rgba(247,244,238,0.035); }
+
+    .asset-strip {
+      background: var(--paper);
+      color: #0b1118;
+      border-top-color: rgba(8,10,15,0.1);
+    }
+    .asset-strip img {
+      border-color: rgba(8,10,15,0.12);
+      box-shadow: 0 34px 100px rgba(8,10,15,0.15);
+    }
+    .asset-copy p { color: #4f5966; }
+
+    .visit {
+      background: #090d13;
+      border-top-color: rgba(235,229,219,0.14);
+    }
+    .map-panel {
+      background:
+        linear-gradient(135deg, rgba(36,95,223,0.08), transparent 44%),
+        #04070b;
+    }
+    .footer {
+      background:
+        linear-gradient(180deg, #090d13, #07090d);
+      border-top: 1px solid rgba(235,229,219,0.12);
+    }
+
+    @media (max-width: 1180px) {
+      .hero-system { height: 44vh; opacity: 0.34; }
+      .energy-frame { width: min(940px, 96vw); }
+      .battery-object { width: min(420px, 65vw); }
+      .nav { grid-template-columns: 1fr auto; }
+    }
+
+    @media (max-width: 720px) {
+      html { scroll-padding-top: 88px; }
+      .nav { top: 12px; left: 12px; right: 12px; padding: 10px 13px; border-radius: 30px; }
+      .brand-mark { width: 158px; height: 58px; }
+      .nav-call { min-height: 44px; padding: 9px 12px; font-size: 13px; }
+      .hero {
+        min-height: auto;
+        padding: 122px 18px 38px;
+      }
+      .hero-system {
+        inset: 126px 0 auto;
+        height: 250px;
+        opacity: 0.26;
+        overflow: hidden;
+      }
+      .energy-frame {
+        width: 440px;
+        height: 250px;
+        transform: perspective(900px) rotateX(60deg) rotateZ(-7deg) translateY(-22px);
+      }
+      .battery-object {
+        width: 270px;
+        height: 86px;
+      }
+      .battery-face img { width: 204px; }
+      .battery-terminal { top: 19px; width: 18px; height: 48px; }
+      .terminal-left { left: -17px; }
+      .terminal-right { right: -17px; }
+      .hero-title {
+        font-size: clamp(72px, 20vw, 112px);
+        margin-top: 38px;
+        margin-bottom: 20px;
+      }
+      .hero-copy { font-size: 18px; line-height: 1.48; }
+      .hero-foot {
+        gap: 10px;
+        border: 0;
+        background: transparent;
+        box-shadow: none;
+      }
+      .hero-foot > div {
+        border: 1px solid rgba(235,229,219,0.16);
+        background: rgba(17,24,34,0.76);
+      }
+      .section { padding: 86px 18px; }
+      .section-title { font-size: clamp(49px, 14vw, 72px); }
+      #service .service-card { min-height: 0; }
+      .process-row { grid-template-columns: 1fr; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .battery-sheen,
+      .charge-meter span,
+      .hero-title .line span,
+      .status-dot,
+      .marquee-track { animation: none !important; }
+      .hero-title .line span { transform: none; opacity: 1; filter: none; }
+    }
   </style>
 </head>
 <body>
@@ -1595,6 +2103,22 @@
 
   <header class="hero" id="top">
     <img class="hero-asset" src="assets/logo-clean.png" alt="" aria-hidden="true" />
+    <div class="hero-system" aria-hidden="true">
+      <div class="energy-frame">
+        <div class="battery-object">
+          <div class="battery-terminal terminal-left"></div>
+          <div class="battery-terminal terminal-right"></div>
+          <div class="battery-face">
+            <div class="battery-sheen"></div>
+            <img src="assets/logo-nav-clean.png" alt="" />
+            <div class="charge-meter"><span></span><span></span><span></span><span></span></div>
+          </div>
+        </div>
+        <div class="signal-line line-a"></div>
+        <div class="signal-line line-b"></div>
+        <div class="signal-line line-c"></div>
+      </div>
+    </div>
     <div class="hero-topline serif">
       <div data-i18n="heroAddress">7423 Airport Blvd &middot; Houston, TX</div>
       <div><span class="status-dot" aria-hidden="true"></span><span id="openStatus">Open Now</span></div>
@@ -1645,7 +2169,7 @@
           <div class="section-kicker serif" data-i18n="serviceKicker">Straight answers</div>
           <h2 class="section-title display" data-title="serviceTitle"></h2>
         </div>
-        <p class="section-lede serif" data-i18n="serviceLede">A real Houston shop with fair prices, fast installation, and no hidden runaround.</p>
+        <p class="section-lede serif" data-i18n="serviceLede">A calmer path from dead battery to drive-away: clear testing, honest options, and the install handled on the spot.</p>
       </div>
       <div class="services-grid reveal" id="servicesGrid"></div>
     </section>
@@ -1915,7 +2439,7 @@
         navReviews: "Reviews",
         navVisit: "Visit",
         heroAddress: "7423 Airport Blvd, Houston, TX 77061",
-        heroCopy: "Affordable new and refurbished batteries, load-tested and installed fast in Houston.",
+        heroCopy: "Battery trouble feels urgent. Pull up near Hobby Airport for a tested battery, a clear answer, and free install with purchase.",
         openNow: "Open Now",
         closed: "Closed",
         closes: "Closes 6:00 PM",
@@ -1925,7 +2449,7 @@
         heroL3: "Your",
         heroL4: "Day.",
         missionLabel: "Mission",
-        missionText: "Honest batteries, installed fast, by people who treat every driver like a neighbor.",
+        missionText: "Remove the doubt first. Test it, explain it, install it, and get the driver moving.",
         installLabel: "Install Time",
         installValue: "About 5 Min",
         installSub: "Free with purchase",
@@ -1933,11 +2457,11 @@
         ratingSub: "800+ neighbors",
         statusLabel: "Status",
         serviceKicker: "Straight answers",
-        serviceTitle: ["Service", "without", "excuses."],
-        serviceLede: "A real Houston shop with fair prices, fast installation, and no hidden runaround.",
+        serviceTitle: ["Decide", "in", "minutes."],
+        serviceLede: "A calmer path from dead battery to drive-away: clear testing, honest options, and the install handled on the spot.",
         specKicker: "On the bench",
         specSub: "Average rating across 800+ real customer reviews",
-        specHeadline: "Every battery is load-tested before it touches your hood.",
+        specHeadline: "Every battery is tested before it touches your hood.",
         answersKicker: "Houston battery answers",
         answersTitle: ["Found for", "the right", "reason."],
         answersLede: "For the searches people actually make when the car will not start, the airport run is waiting, or the budget needs a smart fix.",
@@ -1948,8 +2472,8 @@
         crewTitle: ["Ask for them", "by name."],
         crewLede: "The reviews keep mentioning the same people because the service feels personal.",
         processKicker: "How it works",
-        processTitle: ["In and out", "in ten minutes."],
-        processLede: "No appointment maze. Pull up, get tested, choose the right option, and drive away.",
+        processTitle: ["Stress", "to", "started."],
+        processLede: "No appointment maze. Pull up, get tested, choose the right option, and drive away with the uncertainty gone.",
         assetKicker: "Business-card energy",
         assetLine1: "Red.",
         assetLine2: "Blue.",
@@ -1965,9 +2489,9 @@
         today: "Today",
         marquee: ["New Batteries", "Used Batteries", "Free Install", "Alternator Check", "Warranty Included", "Auto \u00b7 Marine \u00b7 Golf", "Motorcycle \u00b7 ATV \u00b7 Commercial"],
         services: [
-          ["New Batteries", "Fresh stock with manufacturer-fresh dates for automotive, marine, golf cart, motorcycle, ATV, commercial, and high-output audio needs."],
+          ["New Batteries", "Fresh stock for automotive, marine, golf cart, motorcycle, ATV, commercial, and high-output audio needs."],
           ["Used and Refurbished", "Inspected, recharged, load-tested, and warrantied options for drivers who need the smartest affordable fix."],
-          ["Free Install", "Old battery out, terminals cleaned, new battery in, alternator checked, and you are back on the road fast."]
+          ["Free Install", "Old battery out, terminals cleaned, new battery secured, alternator checked, and you are back on the road fast."]
         ],
         stats: [
           ["5 min", "Average install time from pull-up to drive-away"],
@@ -2033,7 +2557,7 @@
         navReviews: "Rese\u00f1as",
         navVisit: "Vis\u00edtanos",
         heroAddress: "7423 Airport Blvd, Houston, TX 77061",
-        heroCopy: "Bater\u00edas nuevas y reparadas a buen precio, probadas e instaladas r\u00e1pido en Houston.",
+        heroCopy: "Cuando la bater\u00eda falla, urge resolver. Llega cerca del Aeropuerto Hobby por una prueba clara e instalaci\u00f3n gratis con tu compra.",
         openNow: "Abierto Ahora",
         closed: "Cerrado",
         closes: "Cerramos a las 6:00 PM",
@@ -2043,7 +2567,7 @@
         heroL3: "D\u00eda",
         heroL4: "Hoy.",
         missionLabel: "Misi\u00f3n",
-        missionText: "Bater\u00edas honestas, instaladas r\u00e1pido, por gente que atiende a cada cliente como vecino.",
+        missionText: "Quitamos la duda primero. Probamos, explicamos, instalamos y te ponemos en camino.",
         installLabel: "Instalaci\u00f3n",
         installValue: "Como 5 Min",
         installSub: "Gratis con tu compra",
@@ -2051,8 +2575,8 @@
         ratingSub: "M\u00e1s de 800 vecinos",
         statusLabel: "Estado",
         serviceKicker: "Respuestas claras",
-        serviceTitle: ["Servicio", "sin", "pretextos."],
-        serviceLede: "Una tienda de Houston con precios justos, instalaci\u00f3n r\u00e1pida y cero vueltas raras.",
+        serviceTitle: ["Decides", "en", "minutos."],
+        serviceLede: "Un camino m\u00e1s tranquilo desde una bater\u00eda muerta hasta salir manejando: prueba clara, opciones honestas e instalaci\u00f3n al momento.",
         specKicker: "En el taller",
         specSub: "Calificaci\u00f3n promedio en m\u00e1s de 800 rese\u00f1as reales",
         specHeadline: "Cada bater\u00eda se prueba antes de tocar tu carro.",
@@ -2066,8 +2590,8 @@
         crewTitle: ["Pregunta por", "ellos."],
         crewLede: "Las rese\u00f1as repiten los mismos nombres porque el servicio se siente personal.",
         processKicker: "As\u00ed funciona",
-        processTitle: ["Entras y sales", "en diez minutos."],
-        processLede: "Sin vueltas. Llegas, te revisan, escoges la mejor opci\u00f3n y sales manejando.",
+        processTitle: ["Del estr\u00e9s", "al", "arranque."],
+        processLede: "Sin vueltas. Llegas, te revisan, escoges la mejor opci\u00f3n y sales manejando sin la duda.",
         assetKicker: "La fuerza de la tarjeta",
         assetLine1: "Rojo.",
         assetLine2: "Azul.",
