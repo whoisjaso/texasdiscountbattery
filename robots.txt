@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://texasdiscountbattery.vercel.app/sitemap.xml
