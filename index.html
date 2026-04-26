@@ -206,8 +206,8 @@
       left: 22px;
       right: 22px;
       display: grid;
-      grid-template-columns: minmax(230px, auto) minmax(0, 1fr) auto;
-      gap: 24px;
+      grid-template-columns: minmax(190px, 0.72fr) minmax(460px, 1.58fr) minmax(230px, 0.72fr);
+      gap: clamp(18px, 2vw, 34px);
       align-items: center;
       max-width: 1360px;
       margin: 0 auto;
@@ -232,6 +232,7 @@
       gap: 0;
       align-items: center;
       min-width: 0;
+      justify-self: start;
     }
     .brand-mark {
       width: clamp(174px, 16vw, 238px);
@@ -254,7 +255,9 @@
     .nav-links {
       display: flex;
       align-items: center;
-      gap: 34px;
+      justify-content: space-evenly;
+      gap: clamp(22px, 4vw, 82px);
+      width: 100%;
       font-weight: 600;
       color: #27354e;
       font-size: 14px;
@@ -262,6 +265,8 @@
     .nav-links a {
       position: relative;
       padding: 8px 0;
+      text-align: center;
+      white-space: nowrap;
     }
     .nav-links a::after {
       content: "";
@@ -281,6 +286,8 @@
       display: flex;
       align-items: center;
       gap: 12px;
+      width: 100%;
+      justify-content: flex-end;
     }
     .lang-toggle {
       display: inline-flex;
