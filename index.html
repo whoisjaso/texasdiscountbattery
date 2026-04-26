@@ -33,7 +33,11 @@
     }
 
     * { box-sizing: border-box; }
-    html { scroll-behavior: auto; background: var(--ink); }
+    html {
+      scroll-behavior: smooth;
+      scroll-padding-top: 92px;
+      background: var(--ink);
+    }
     body {
       margin: 0;
       min-height: 100vh;
@@ -45,7 +49,7 @@
       overflow-x: hidden;
     }
     @media (pointer: fine) {
-      body, a, button { cursor: none; }
+      body, a, button { cursor: auto; }
     }
 
     a { color: inherit; text-decoration: none; }
@@ -54,11 +58,10 @@
 
     .display {
       font-family: Anton, Impact, sans-serif;
-      font-style: italic;
       font-weight: 400;
       text-transform: uppercase;
-      letter-spacing: -0.01em;
-      line-height: 0.92;
+      letter-spacing: 0.01em;
+      line-height: 1;
     }
     .serif {
       font-family: "DM Serif Display", Georgia, serif;
@@ -90,7 +93,7 @@
       display: none;
     }
     @media (pointer: fine) {
-      .cursor-dot, .cursor-ring { display: block; }
+      .cursor-dot, .cursor-ring { display: none; }
     }
     .cursor-dot {
       width: 10px;
@@ -131,7 +134,7 @@
         radial-gradient(ellipse 58% 42% at 36% 40%, rgba(0,51,160,0.22), transparent 64%),
         radial-gradient(ellipse 42% 40% at 72% 60%, rgba(191,10,48,0.18), transparent 64%),
         var(--ink);
-      transition: opacity 0.75s ease, visibility 0.75s ease;
+      transition: opacity 0.45s ease, visibility 0.45s ease;
     }
     .loader.gone { opacity: 0; visibility: hidden; }
     .loader-inner {
@@ -158,11 +161,13 @@
       to { opacity: 1; }
     }
     .loader-edge {
-      transition: x 0.2s linear;
       filter: drop-shadow(0 0 16px rgba(244,246,250,0.72));
+      opacity: 0;
+      will-change: transform, opacity;
     }
     .loader-reveal-logo {
       filter: saturate(1.02) contrast(1.03);
+      will-change: opacity;
     }
     .loader-bar {
       width: min(460px, 64vw);
@@ -172,10 +177,12 @@
       border-radius: 99px;
     }
     .loader-fill {
-      width: 0%;
+      width: 100%;
       height: 100%;
       background: linear-gradient(90deg, var(--blue), var(--silver), var(--red));
-      transition: width 0.2s linear;
+      transform: scaleX(0);
+      transform-origin: left center;
+      will-change: transform;
     }
     .loader-sub {
       color: var(--silver);
@@ -191,13 +198,16 @@
       left: 0;
       right: 0;
       display: grid;
-      grid-template-columns: minmax(210px, 1fr) auto minmax(260px, 1fr);
-      gap: 22px;
+      grid-template-columns: minmax(230px, auto) minmax(0, 1fr) auto;
+      gap: 24px;
       align-items: center;
-      padding: 18px 32px;
-      background: linear-gradient(180deg, rgba(6,16,31,0.9), rgba(6,16,31,0.54) 70%, rgba(6,16,31,0));
+      padding: 12px 32px;
+      color: var(--ink);
+      background: rgba(244,246,250,0.94);
       backdrop-filter: blur(10px);
       -webkit-backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(6,16,31,0.12);
+      box-shadow: 0 18px 44px rgba(0,0,0,0.14);
     }
     .brand {
       display: flex;
@@ -206,9 +216,9 @@
       min-width: 0;
     }
     .brand-mark {
-      width: clamp(154px, 18vw, 245px);
-      height: clamp(42px, 5vw, 64px);
-      background: transparent url("assets/logo-nav-transparent.png") left center / contain no-repeat;
+      width: clamp(190px, 18vw, 280px);
+      height: clamp(58px, 5.8vw, 82px);
+      background: transparent url("assets/logo-nav-clean.png") left center / contain no-repeat;
       border: 0;
       box-shadow: none;
       flex: 0 0 auto;
@@ -229,7 +239,7 @@
       align-items: center;
       gap: 34px;
       font-weight: 600;
-      color: var(--white-2);
+      color: #27354e;
     }
     .nav-links a {
       position: relative;
@@ -285,6 +295,12 @@
       padding: 12px 18px;
       font-weight: 700;
       transition: transform 0.28s ease, background 0.28s ease, border-color 0.28s ease, color 0.28s ease;
+      white-space: nowrap;
+    }
+    .nav .nav-call,
+    .nav .btn {
+      border-color: rgba(6,16,31,0.18);
+      color: var(--ink);
     }
     .nav-call:hover,
     .btn:hover {
@@ -318,18 +334,18 @@
     }
 
     .hero {
-      min-height: 100vh;
+      min-height: min(900px, 100svh);
       position: relative;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
       align-items: center;
       text-align: center;
-      padding: 128px 32px 46px;
+      padding: 132px 32px 44px;
       overflow: hidden;
       background:
-        radial-gradient(ellipse 68% 52% at 24% 24%, rgba(0,51,160,0.34), transparent 62%),
-        radial-gradient(ellipse 48% 50% at 88% 72%, rgba(191,10,48,0.16), transparent 62%),
+        linear-gradient(145deg, rgba(0,51,160,0.18), transparent 42%),
+        radial-gradient(ellipse 58% 44% at 72% 54%, rgba(191,10,48,0.16), transparent 64%),
         var(--ink);
     }
     .hero::before {
@@ -339,10 +355,10 @@
       background-image:
         linear-gradient(var(--line) 1px, transparent 1px),
         linear-gradient(90deg, var(--line) 1px, transparent 1px);
-      background-size: 86px 86px;
+      background-size: 92px 92px;
       mask-image: radial-gradient(ellipse 84% 64% at 50% 48%, #000 18%, transparent 80%);
       pointer-events: none;
-      opacity: 0.75;
+      opacity: 0.48;
     }
     .hero::after {
       content: "";
@@ -354,16 +370,16 @@
       transform: translate(-50%, -50%);
       background: repeating-conic-gradient(from 0deg, transparent 0deg, transparent 6deg, rgba(192,200,212,0.72) 6deg, rgba(192,200,212,0.72) 7deg);
       mask-image: radial-gradient(circle, transparent 29%, #000 58%, transparent 90%);
-      opacity: 0.055;
+      opacity: 0.025;
       pointer-events: none;
     }
     .hero-asset {
       position: absolute;
       left: 50%;
-      top: 54%;
-      width: min(58vw, 920px);
+      top: 51%;
+      width: min(62vw, 760px);
       transform: translate(-50%, -50%);
-      opacity: 0.14;
+      opacity: 0.1;
       filter: saturate(0.96) contrast(1.06) drop-shadow(0 34px 74px rgba(0,0,0,0.44));
       pointer-events: none;
       z-index: 0;
@@ -375,7 +391,7 @@
       z-index: 2;
     }
     .hero-topline {
-      display: flex;
+      display: none;
       justify-content: space-between;
       gap: 24px;
       color: var(--silver);
@@ -389,15 +405,16 @@
       gap: 12px;
     }
     .hero-title {
-      margin: 32px auto;
-      font-size: clamp(76px, 17vw, 318px);
-      line-height: 0.86;
-      max-width: 8ch;
+      margin: 36px auto 18px;
+      font-size: clamp(64px, 11vw, 178px);
+      line-height: 1.02;
+      max-width: 9ch;
       text-align: center;
     }
     .hero-title .line {
       display: block;
-      overflow: hidden;
+      overflow: visible;
+      padding: 0.02em 0.05em;
     }
     .hero-title .line span {
       display: inline-block;
@@ -412,15 +429,60 @@
     @keyframes titleRise {
       to { transform: translateY(0); opacity: 1; filter: blur(0); }
     }
+    .hero-copy {
+      position: relative;
+      z-index: 2;
+      width: min(680px, 100%);
+      margin: 0 auto;
+      color: var(--white-2);
+      font-size: clamp(18px, 1.8vw, 24px);
+      line-height: 1.5;
+    }
+    .hero-actions {
+      position: relative;
+      z-index: 2;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 12px;
+      margin: 26px auto 8px;
+    }
+    .hero-address-link {
+      position: relative;
+      z-index: 2;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      max-width: 100%;
+      color: var(--silver);
+      border-bottom: 1px solid rgba(192,200,212,0.34);
+      padding-bottom: 3px;
+      line-height: 1.4;
+      transition: color 0.22s ease, border-color 0.22s ease;
+    }
+    .hero-address-link:hover {
+      color: var(--white);
+      border-color: var(--red-2);
+    }
     .hero-foot {
       display: grid;
       grid-template-columns: 1.35fr repeat(3, 1fr);
-      gap: 28px;
-      padding-top: 30px;
-      border-top: 1px solid var(--line);
-      align-items: end;
-      width: 100%;
+      gap: 1px;
+      width: min(1160px, 100%);
+      margin-top: 42px;
+      padding-top: 0;
+      border: 1px solid var(--line);
+      background: var(--line);
+      align-items: stretch;
       text-align: center;
+    }
+    .hero-foot > div {
+      min-height: 150px;
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      background: rgba(11,26,47,0.78);
     }
     .fact-label,
     .section-kicker,
@@ -480,7 +542,7 @@
 
     section { position: relative; }
     .section {
-      padding: 150px 32px;
+      padding: 112px 32px;
     }
     .section-head {
       display: grid;
@@ -489,28 +551,29 @@
       align-items: end;
       justify-items: center;
       max-width: 1180px;
-      margin: 0 auto 88px;
+      margin: 0 auto 62px;
       padding-bottom: 28px;
       border-bottom: 1px solid var(--line);
       text-align: center;
     }
     .section-title {
       margin: 14px 0 0;
-      font-size: clamp(52px, 8.5vw, 150px);
-      max-width: 11ch;
+      font-size: clamp(48px, 7vw, 118px);
+      line-height: 1.02;
+      max-width: 12ch;
       text-align: center;
     }
     .section-title .word {
       display: inline-block;
-      overflow: hidden;
-      padding: 0 0.035em 0.075em 0;
+      overflow: visible;
+      padding: 0 0.045em 0.08em 0;
       vertical-align: top;
     }
     .section-title .word > span {
       display: inline-block;
-      transform: translateY(110%);
-      opacity: 0;
-      filter: blur(9px);
+      transform: translateY(0);
+      opacity: 1;
+      filter: blur(0);
       transition: transform 1.35s cubic-bezier(.16,.84,.24,1), opacity 1s ease, filter 1s ease;
       transition-delay: calc(var(--i, 0) * 80ms);
     }
@@ -524,14 +587,14 @@
       font-size: clamp(18px, 1.7vw, 21px);
       line-height: 1.5;
       max-width: 620px;
-      opacity: 0;
-      transform: translateY(22px);
+      opacity: 1;
+      transform: translateY(0);
       transition: opacity 1s ease 0.45s, transform 1s ease 0.45s;
     }
     .section-head.in .section-lede { opacity: 1; transform: translateY(0); }
     .reveal {
-      opacity: 0;
-      transform: translateY(38px);
+      opacity: 1;
+      transform: translateY(0);
       transition: opacity 1s cubic-bezier(.2,.8,.2,1), transform 1s cubic-bezier(.2,.8,.2,1);
     }
     .reveal.in { opacity: 1; transform: translateY(0); }
@@ -539,14 +602,16 @@
     .services-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      gap: 1px;
-      border: 1px solid var(--line);
-      background: var(--line);
+      gap: 18px;
+      max-width: 1180px;
+      margin: 0 auto;
+      border: 0;
+      background: transparent;
     }
     .service-card {
       position: relative;
-      min-height: 420px;
-      padding: 52px 38px 40px;
+      min-height: 340px;
+      padding: 38px 30px 34px;
       background: var(--service-bg, var(--ink));
       overflow: hidden;
       display: flex;
@@ -555,7 +620,8 @@
       align-items: center;
       text-align: center;
       color: var(--service-text, var(--white));
-      border-color: var(--service-border, transparent);
+      border: 1px solid var(--service-border, var(--line));
+      border-radius: 8px;
       transition: transform 0.35s ease, border-color 0.35s ease, color 0.35s ease;
     }
     .service-card::before {
@@ -567,23 +633,23 @@
       transition: transform 0.72s cubic-bezier(.2,.8,.2,1);
     }
     .service-card:nth-child(1) {
-      --service-bg: linear-gradient(155deg, #0033a0 0%, #001e66 100%);
+      --service-bg: linear-gradient(155deg, rgba(0,51,160,0.22) 0%, rgba(0,30,102,0.38) 100%);
       --service-hover: linear-gradient(155deg, #1e4fbf 0%, #0033a0 100%);
       --service-border: rgba(30,79,191,0.65);
       --service-kicker: #c81530;
       --service-copy: #f4f6fa;
     }
     .service-card:nth-child(2) {
-      --service-bg: linear-gradient(155deg, #c0c8d4 0%, #8b96a6 44%, #122541 100%);
-      --service-hover: linear-gradient(155deg, #dce1ea 0%, #8b96a6 44%, #1a2f4e 100%);
-      --service-border: rgba(192,200,212,0.75);
-      --service-text: #06101f;
-      --service-kicker: #8a0820;
-      --service-copy: #06101f;
+      --service-bg: linear-gradient(155deg, rgba(192,200,212,0.12) 0%, rgba(139,150,166,0.1) 44%, rgba(18,37,65,0.64) 100%);
+      --service-hover: linear-gradient(155deg, rgba(220,225,234,0.2) 0%, rgba(139,150,166,0.22) 44%, #1a2f4e 100%);
+      --service-border: rgba(192,200,212,0.38);
+      --service-text: var(--white);
+      --service-kicker: var(--red-2);
+      --service-copy: var(--white-2);
       --service-hover-copy: #f4f6fa;
     }
     .service-card:nth-child(3) {
-      --service-bg: linear-gradient(155deg, #bf0a30 0%, #8a0820 48%, #06101f 100%);
+      --service-bg: linear-gradient(155deg, rgba(191,10,48,0.18) 0%, rgba(138,8,32,0.28) 48%, rgba(6,16,31,0.88) 100%);
       --service-hover: linear-gradient(155deg, #c81530 0%, #bf0a30 46%, #0b1a2f 100%);
       --service-border: rgba(200,21,48,0.68);
       --service-kicker: #f4f6fa;
@@ -598,9 +664,9 @@
     .service-card .card-kicker { color: var(--service-kicker, var(--red-2)); }
     .service-card h3 {
       margin: 28px 0 18px;
-      font-size: clamp(44px, 5vw, 68px);
-      line-height: 0.96;
-      max-width: 8ch;
+      font-size: clamp(34px, 4vw, 54px);
+      line-height: 1.03;
+      max-width: 10ch;
     }
     .service-card p {
       color: var(--service-copy, var(--silver));
@@ -618,7 +684,7 @@
     }
 
     .specs {
-      padding: 118px 32px;
+      padding: 92px 32px;
       border-top: 1px solid var(--line);
       border-bottom: 1px solid var(--line);
       background:
@@ -636,7 +702,7 @@
       text-align: center;
     }
     .big-score {
-      font-size: clamp(160px, 23vw, 410px);
+      font-size: clamp(118px, 17vw, 260px);
     }
     .big-score small {
       font-size: 0.26em;
@@ -671,29 +737,54 @@
     }
 
     .reviews-wrap {
+      position: relative;
       overflow: hidden;
       padding-bottom: 24px;
+    }
+    .reviews-wrap::before,
+    .reviews-wrap::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      bottom: 62px;
+      width: min(10vw, 92px);
+      z-index: 2;
+      pointer-events: none;
+    }
+    .reviews-wrap::before {
+      left: 0;
+      background: linear-gradient(90deg, var(--ink), transparent);
+    }
+    .reviews-wrap::after {
+      right: 0;
+      background: linear-gradient(270deg, var(--ink), transparent);
     }
     .reviews-track {
       display: flex;
       gap: 22px;
       overflow-x: auto;
       overscroll-behavior-x: contain;
+      scroll-behavior: smooth;
+      scroll-snap-type: x mandatory;
       scrollbar-width: none;
       padding: 8px 32px 20px;
       user-select: none;
+      cursor: grab;
     }
+    .reviews-track.dragging { cursor: grabbing; scroll-behavior: auto; }
     .reviews-track::-webkit-scrollbar { display: none; }
     .review-card {
-      flex: 0 0 min(440px, 82vw);
-      min-height: 338px;
+      flex: 0 0 clamp(300px, 31vw, 420px);
+      min-height: 282px;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
-      padding: 34px 30px;
+      padding: 30px 28px;
       background: var(--ink-2);
       border: 1px solid var(--line);
+      border-radius: 8px;
       text-align: center;
+      scroll-snap-align: center;
       transition: transform 0.3s ease, border-color 0.3s ease, background 0.3s ease;
     }
     .review-card:hover {
@@ -710,8 +801,8 @@
       margin: 0;
       font-family: "DM Serif Display", Georgia, serif;
       font-style: italic;
-      font-size: 20px;
-      line-height: 1.38;
+      font-size: clamp(18px, 1.35vw, 20px);
+      line-height: 1.44;
     }
     .review-meta {
       display: flex;
@@ -727,9 +818,34 @@
       font-family: Anton, sans-serif;
       font-style: italic;
       text-transform: uppercase;
-      font-size: 21px;
+      font-size: 20px;
+      line-height: 1.15;
     }
     .review-date { color: var(--silver); white-space: nowrap; }
+    .reviews-controls {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      margin-top: 12px;
+      position: relative;
+      z-index: 3;
+    }
+    .reviews-controls button {
+      width: 42px;
+      height: 42px;
+      border-radius: 999px;
+      border: 1px solid var(--line-strong);
+      background: var(--ink-2);
+      color: var(--white);
+      font-size: 24px;
+      line-height: 1;
+      transition: transform 0.2s ease, background 0.2s ease, border-color 0.2s ease;
+    }
+    .reviews-controls button:hover {
+      transform: translateY(-2px);
+      background: var(--blue);
+      border-color: var(--blue);
+    }
 
     .crew-grid {
       display: grid;
@@ -737,8 +853,9 @@
       gap: 30px;
     }
     .crew-card {
-      min-height: 500px;
+      min-height: 390px;
       border: 1px solid var(--line);
+      border-radius: 8px;
       background:
         repeating-linear-gradient(45deg, var(--ink-2), var(--ink-2) 14px, var(--ink-3) 14px, var(--ink-3) 28px);
       position: relative;
@@ -775,8 +892,8 @@
       padding: 30px;
     }
     .crew-name {
-      font-size: clamp(46px, 5vw, 66px);
-      line-height: 0.96;
+      font-size: clamp(36px, 4vw, 54px);
+      line-height: 1.03;
       margin: 0;
     }
     .crew-role {
@@ -799,12 +916,12 @@
       grid-template-columns: 78px minmax(220px, 0.95fr) minmax(280px, 1.2fr) 160px;
       gap: 30px;
       align-items: center;
-      padding: 40px 0;
+      padding: 34px 0;
       border-top: 1px solid var(--line);
       transition: padding 0.34s ease, background 0.34s ease;
     }
     .process-row:hover {
-      padding: 58px 0;
+      padding: 42px 0;
       background: rgba(11,26,47,0.74);
     }
     .process-num,
@@ -816,8 +933,8 @@
     }
     .process-title {
       margin: 0;
-      font-size: clamp(40px, 5vw, 86px);
-      line-height: 0.96;
+      font-size: clamp(34px, 4vw, 64px);
+      line-height: 1.04;
     }
     .process-desc {
       color: var(--silver);
@@ -835,33 +952,36 @@
       display: grid;
       grid-template-columns: minmax(360px, 0.9fr) minmax(360px, 1.1fr);
       border-top: 1px solid var(--line);
-      min-height: 760px;
+      min-height: 700px;
     }
     .visit-info {
-      padding: 92px 56px;
+      padding: 78px 56px;
       border-right: 1px solid var(--line);
       text-align: center;
     }
     .visit-title {
-      font-size: clamp(58px, 7vw, 124px);
-      line-height: 0.9;
+      font-size: clamp(52px, 6vw, 98px);
+      line-height: 1.02;
       margin: 14px auto 32px;
       max-width: 6ch;
     }
     .address {
+      display: block;
       margin: 0 auto;
       padding: 0.08em 0.18em 0.14em;
       max-width: min(100%, 620px);
-      font-size: clamp(24px, 3vw, 44px);
-      line-height: 1.1;
+      font-size: clamp(24px, 3vw, 40px);
+      line-height: 1.18;
       letter-spacing: 0;
       overflow: visible;
       text-wrap: balance;
+      transition: color 0.22s ease, transform 0.22s ease;
     }
+    .address:hover { transform: translateY(-2px); }
     .address-line {
       display: block;
       padding: 0.02em 0.14em;
-      white-space: nowrap;
+      overflow-wrap: anywhere;
     }
     .address-sub {
       color: var(--silver);
@@ -893,14 +1013,37 @@
     }
     .map-panel {
       position: relative;
-      min-height: 760px;
+      min-height: 700px;
       background: #04091a;
       overflow: hidden;
     }
     .map-panel svg {
       width: 100%;
       height: 100%;
-      min-height: 760px;
+      min-height: 700px;
+    }
+    .map-directions {
+      position: absolute;
+      left: 24px;
+      bottom: 24px;
+      z-index: 3;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 46px;
+      padding: 0 18px;
+      border-radius: 999px;
+      background: var(--white);
+      color: var(--ink);
+      border: 1px solid rgba(6,16,31,0.18);
+      font-weight: 800;
+      box-shadow: 0 16px 34px rgba(0,0,0,0.28);
+      transition: transform 0.22s ease, background 0.22s ease, color 0.22s ease;
+    }
+    .map-directions:hover {
+      transform: translateY(-2px);
+      background: var(--red);
+      color: var(--white);
     }
 
     .asset-strip {
@@ -909,14 +1052,14 @@
       justify-content: center;
       justify-items: center;
       gap: 42px;
-      padding: 82px 32px;
+      padding: 72px 32px;
       border-top: 1px solid var(--line);
       border-bottom: 1px solid var(--line);
       background: var(--ink-2);
       text-align: center;
     }
     .asset-strip img {
-      width: min(680px, 100%);
+      width: min(620px, 100%);
       height: auto;
       min-height: 0;
       object-fit: contain;
@@ -931,7 +1074,7 @@
       text-align: center;
     }
     .asset-copy h2 {
-      font-size: clamp(48px, 7vw, 112px);
+      font-size: clamp(44px, 6vw, 86px);
       margin: 12px auto 24px;
       max-width: 8ch;
     }
@@ -945,7 +1088,7 @@
     }
 
     .footer {
-      padding: 88px 32px 44px;
+      padding: 72px 32px 42px;
       overflow: hidden;
     }
     .footer-ribbon {
@@ -955,10 +1098,11 @@
       flex-wrap: wrap;
       white-space: normal;
       text-align: center;
-      font-size: clamp(54px, 9vw, 128px);
-      line-height: 0.9;
-      margin-bottom: 70px;
+      font-size: clamp(42px, 7vw, 92px);
+      line-height: 1.02;
+      margin-bottom: 54px;
     }
+    .footer-ribbon span:nth-child(n + 3) { display: none; }
     .footer-grid {
       display: grid;
       grid-template-columns: 2fr 1fr 1fr 1fr;
@@ -1002,39 +1146,47 @@
       .footer-grid { grid-template-columns: 1fr 1fr; }
     }
     @media (max-width: 720px) {
-      .nav { padding: 12px 16px; gap: 10px; }
+      html { scroll-padding-top: 76px; }
+      .nav { padding: 10px 14px; gap: 10px; }
       .brand span { font-size: 13px; max-width: 128px; }
-      .brand-mark { width: 146px; height: 42px; }
+      .brand-mark { width: 154px; height: 58px; }
       .nav-actions { gap: 8px; }
       .lang-toggle button { min-width: 36px; padding: 7px 8px; font-size: 12px; }
-      .nav-call { padding: 9px 10px; font-size: 0; }
-      .nav-call .status-dot { margin: 0; }
-      .hero { min-height: auto; padding: 96px 18px 34px; }
+      .nav-call { padding: 8px 10px; font-size: 12px; }
+      .nav-call .status-dot { display: none; }
+      .hero { min-height: auto; padding: 100px 18px 34px; }
       .hero-topline { flex-direction: column; align-items: center; gap: 7px; text-align: center; }
-      .hero-title { font-size: clamp(62px, 22vw, 140px); margin: 34px auto; }
+      .hero-title { font-size: clamp(54px, 17vw, 104px); margin: 26px auto 14px; }
+      .hero-copy { font-size: 17px; }
+      .hero-actions .btn { flex: 1 1 100%; }
+      .hero-address-link { font-size: 15px; }
       .hero-foot { grid-template-columns: 1fr; gap: 22px; }
+      .hero-foot > div { min-height: 0; border: 1px solid var(--line); border-radius: 8px; }
       .fact-copy { font-size: 16px; }
-      .section { padding: 76px 18px; }
+      .section { padding: 74px 18px; }
       .section-head { grid-template-columns: 1fr; margin: 0 auto 44px; gap: 18px; }
-      .section-title { font-size: clamp(45px, 13vw, 76px); }
+      .section-title { font-size: clamp(39px, 11vw, 64px); }
       .service-card { min-height: 280px; padding: 34px 24px 30px; }
       .specs { padding: 72px 18px; }
       .stats-row { grid-template-columns: 1fr; }
       .reviews-track { padding-left: 18px; padding-right: 18px; }
-      .review-card { min-height: 300px; padding: 26px 22px; }
+      .review-card { flex-basis: min(330px, 86vw); min-height: 286px; padding: 26px 22px; }
+      .reviews-wrap::before, .reviews-wrap::after { width: 30px; }
       .process-row { grid-template-columns: 1fr; gap: 10px; padding: 28px 0; }
       .process-desc, .process-time { grid-column: auto; }
       .process-time { font-size: 16px; }
       .visit-info { padding: 58px 18px; }
-      .address { font-size: clamp(23px, 6.2vw, 34px); line-height: 1.12; padding-left: 0.06em; padding-right: 0.06em; }
+      .address { font-size: clamp(22px, 6vw, 32px); line-height: 1.18; padding-left: 0.06em; padding-right: 0.06em; }
       .address-line { padding-left: 0.06em; padding-right: 0.06em; }
       .map-panel, .map-panel svg { min-height: 430px; }
+      .map-directions { left: 18px; right: 18px; bottom: 18px; }
       .hours td { font-size: 13px; padding: 14px 0; }
       .visit-actions .btn { flex: 1 1 100%; }
       .asset-strip { padding: 56px 18px; gap: 32px; }
       .asset-strip img { min-height: 0; width: min(520px, 100%); }
       .footer { padding: 58px 18px 32px; }
       .footer-ribbon { margin-bottom: 42px; }
+      .footer-ribbon span:nth-child(n + 2) { display: none; }
       .footer-grid { grid-template-columns: 1fr; }
       .footer-bottom { flex-direction: column; }
     }
@@ -1060,14 +1212,19 @@
             <feFlood flood-color="#c0c8d4" result="silverPaint" />
             <feComposite in="silverPaint" in2="edge" operator="in" />
           </filter>
-          <clipPath id="loaderClip">
-            <rect id="loaderClipRect" x="0" y="0" width="0" height="896"></rect>
-          </clipPath>
+          <linearGradient id="loaderMaskFade" x1="0%" y1="0%" x2="100%" y2="0%">
+            <stop offset="0" stop-color="#fff" stop-opacity="1" />
+            <stop offset="100%" stop-color="#fff" stop-opacity="0" />
+          </linearGradient>
+          <mask id="loaderRevealMask" maskUnits="userSpaceOnUse" x="0" y="0" width="1800" height="896">
+            <rect id="loaderMaskSolid" x="0" y="0" width="0" height="896" fill="#fff"></rect>
+            <rect id="loaderMaskFeather" x="-120" y="0" width="120" height="896" fill="url(#loaderMaskFade)"></rect>
+          </mask>
         </defs>
         <rect width="1800" height="896" rx="22" fill="rgba(192,200,212,0.035)" stroke="rgba(192,200,212,0.18)" />
         <image class="loader-logo-photo" href="assets/logo.png" x="0" y="0" width="1800" height="896" preserveAspectRatio="xMidYMid meet" />
         <image class="loader-outline" href="assets/logo.png" x="0" y="0" width="1800" height="896" preserveAspectRatio="xMidYMid meet" filter="url(#logoEdge)" />
-        <g clip-path="url(#loaderClip)">
+        <g mask="url(#loaderRevealMask)">
           <image class="loader-reveal-logo" href="assets/logo.png" x="0" y="0" width="1800" height="896" preserveAspectRatio="xMidYMid meet" />
         </g>
         <rect id="loaderEdge" class="loader-edge" x="0" y="70" width="5" height="756" rx="2.5" fill="url(#edgeGrad)" />
@@ -1121,6 +1278,12 @@
       <span class="line"><span data-i18n="heroL3">Your</span></span>
       <span class="line"><span class="red" data-i18n="heroL4">Day.</span></span>
     </h1>
+    <p class="hero-copy serif" data-i18n="heroCopy">Affordable new and refurbished batteries, load-tested and installed fast in Houston.</p>
+    <div class="hero-actions">
+      <a class="btn solid" href="tel:7134856592" data-i18n="callBtn" data-hover>Call (713) 485-6592</a>
+      <a class="btn" href="https://www.google.com/maps/dir/?api=1&destination=Texas%20Discount%20Battery%20Co.%2C%207423%20Airport%20Blvd%2C%20Houston%2C%20TX%2077061" target="_blank" rel="noreferrer" data-directions-link data-i18n="directionsBtn" data-hover>Get Directions</a>
+    </div>
+    <a class="hero-address-link serif" href="https://www.google.com/maps/dir/?api=1&destination=Texas%20Discount%20Battery%20Co.%2C%207423%20Airport%20Blvd%2C%20Houston%2C%20TX%2077061" target="_blank" rel="noreferrer" data-directions-link data-i18n="heroAddress" data-hover>7423 Airport Blvd, Houston, TX 77061</a>
     <div class="hero-foot">
       <div>
         <div class="fact-label serif" data-i18n="missionLabel">Mission</div>
@@ -1186,6 +1349,10 @@
       </div>
       <div class="reviews-wrap reveal">
         <div class="reviews-track" id="reviewsTrack" data-hover></div>
+        <div class="reviews-controls" aria-label="Review controls">
+          <button type="button" data-review-control="prev" aria-label="Previous review" data-hover>&lsaquo;</button>
+          <button type="button" data-review-control="next" aria-label="Next review" data-hover>&rsaquo;</button>
+        </div>
       </div>
     </section>
 
@@ -1224,20 +1391,21 @@
       <div class="visit-info">
         <div class="section-kicker serif" data-i18n="visitKicker">Visit the shop</div>
         <h2 class="visit-title display" data-title="visitTitle"></h2>
-        <p class="address display">
+        <a class="address display" href="https://www.google.com/maps/dir/?api=1&destination=Texas%20Discount%20Battery%20Co.%2C%207423%20Airport%20Blvd%2C%20Houston%2C%20TX%2077061" target="_blank" rel="noreferrer" data-directions-link data-hover>
           <span class="address-line">7423 Airport Blvd.</span>
           <span class="address-line chrome">Houston, TX 77061</span>
-        </p>
+        </a>
         <p class="address-sub serif" data-i18n="addressSub">Right by Hobby Airport, on Airport Blvd.</p>
         <table class="hours" aria-label="Business hours">
           <tbody id="hoursBody"></tbody>
         </table>
         <div class="visit-actions">
           <a class="btn solid" href="tel:7134856592" data-i18n="callBtn" data-hover>Call (713) 485-6592</a>
-          <a class="btn" href="https://maps.google.com/?q=7423+Airport+Blvd+Houston+TX+77061" target="_blank" rel="noreferrer" data-i18n="directionsBtn" data-hover>Get Directions</a>
+          <a class="btn" href="https://www.google.com/maps/dir/?api=1&destination=Texas%20Discount%20Battery%20Co.%2C%207423%20Airport%20Blvd%2C%20Houston%2C%20TX%2077061" target="_blank" rel="noreferrer" data-directions-link data-i18n="directionsBtn" data-hover>Get Directions</a>
         </div>
       </div>
       <div class="map-panel" aria-label="Stylized map to 7423 Airport Boulevard">
+        <a class="map-directions" href="https://www.google.com/maps/dir/?api=1&destination=Texas%20Discount%20Battery%20Co.%2C%207423%20Airport%20Blvd%2C%20Houston%2C%20TX%2077061" target="_blank" rel="noreferrer" data-directions-link data-i18n="directionsBtn" data-hover>Get Directions</a>
         <svg viewBox="0 0 820 820" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Map near Hobby Airport">
           <defs>
             <linearGradient id="mapBg" x1="0" y1="0" x2="0" y2="1">
@@ -1359,7 +1527,8 @@
         navCrew: "The Crew",
         navReviews: "Reviews",
         navVisit: "Visit",
-        heroAddress: "7423 Airport Blvd \u00b7 Houston, TX",
+        heroAddress: "7423 Airport Blvd, Houston, TX 77061",
+        heroCopy: "Affordable new and refurbished batteries, load-tested and installed fast in Houston.",
         openNow: "Open Now",
         closed: "Closed",
         closes: "Closes 6:00 PM",
@@ -1459,7 +1628,8 @@
         navCrew: "El Equipo",
         navReviews: "Rese\u00f1as",
         navVisit: "Vis\u00edtanos",
-        heroAddress: "7423 Airport Blvd \u00b7 Houston, TX",
+        heroAddress: "7423 Airport Blvd, Houston, TX 77061",
+        heroCopy: "Bater\u00edas nuevas y reparadas a buen precio, probadas e instaladas r\u00e1pido en Houston.",
         openNow: "Abierto Ahora",
         closed: "Cerrado",
         closes: "Cerramos a las 6:00 PM",
@@ -1557,8 +1727,36 @@
 
     const $ = (sel, root = document) => root.querySelector(sel);
     const $$ = (sel, root = document) => Array.from(root.querySelectorAll(sel));
+    const SHOP_DESTINATION = "Texas Discount Battery Co., 7423 Airport Blvd, Houston, TX 77061";
+    const DIRECTIONS_FALLBACK = "https://www.google.com/maps/dir/?api=1&destination=" + encodeURIComponent(SHOP_DESTINATION);
 
     function t() { return I18N[state.lang]; }
+
+    function directionsHref() {
+      const query = encodeURIComponent(SHOP_DESTINATION);
+      const ua = navigator.userAgent || "";
+      const isAndroid = /Android/i.test(ua);
+      const isIOS = /iPad|iPhone|iPod/i.test(ua) || (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1);
+      const isMac = /Macintosh|Mac OS X/i.test(ua);
+      if (isIOS) return "maps://?daddr=" + query;
+      if (isAndroid) return "geo:0,0?q=" + query;
+      if (isMac) return "https://maps.apple.com/?daddr=" + query;
+      return DIRECTIONS_FALLBACK;
+    }
+
+    function applyDirectionLinks() {
+      const href = directionsHref();
+      $$("[data-directions-link]").forEach((link) => {
+        link.href = href;
+        if (href.startsWith("geo:") || href.startsWith("maps:")) {
+          link.removeAttribute("target");
+          link.removeAttribute("rel");
+        } else {
+          link.target = "_blank";
+          link.rel = "noreferrer";
+        }
+      });
+    }
 
     function titleWords(lines) {
       let index = 0;
@@ -1594,6 +1792,7 @@
       renderHours(dict);
       renderFooter(dict);
       updateOpenStatus();
+      applyDirectionLinks();
       observeFresh();
     }
 
@@ -1679,7 +1878,11 @@
       $("#footerGrid").innerHTML = dict.footer.map(([heading, items]) => `
         <div class="footer-col">
           <h3 class="serif">${heading}</h3>
-          ${items.map((item) => Array.isArray(item) ? `<a href="${item[1]}">${item[0]}</a>` : `<p>${item}</p>`).join("")}
+          ${items.map((item) => {
+            if (Array.isArray(item)) return `<a href="${item[1]}">${item[0]}</a>`;
+            if (/Airport Blvd|Houston, TX/i.test(item)) return `<a href="${DIRECTIONS_FALLBACK}" data-directions-link>${item}</a>`;
+            return `<p>${item}</p>`;
+          }).join("")}
         </div>
       `).join("");
     }
@@ -1725,26 +1928,15 @@
     }
 
     function initSmoothScroll() {
-      let raf = null;
-      const ease = (x) => x < 0.5 ? 4 * x * x * x : 1 - Math.pow(-2 * x + 2, 3) / 2;
       document.addEventListener("click", (event) => {
         const link = event.target.closest("a[href^='#']");
         if (!link) return;
-        const target = $(link.getAttribute("href"));
+        const hash = link.getAttribute("href");
+        const target = $(hash);
         if (!target) return;
         event.preventDefault();
-        if (raf) cancelAnimationFrame(raf);
-        const startY = window.scrollY;
-        const endY = target.getBoundingClientRect().top + window.scrollY - 24;
-        const dist = endY - startY;
-        const duration = Math.min(1800, Math.max(900, Math.abs(dist) * 0.62));
-        const start = performance.now();
-        const step = (now) => {
-          const progress = Math.min(1, (now - start) / duration);
-          window.scrollTo(0, startY + dist * ease(progress));
-          if (progress < 1) raf = requestAnimationFrame(step);
-        };
-        raf = requestAnimationFrame(step);
+        target.scrollIntoView({ behavior: "smooth", block: "start" });
+        history.replaceState(null, "", hash);
       });
     }
 
@@ -1773,57 +1965,110 @@
 
     function initLoader() {
       const fill = $("#loaderFill");
-      const rect = $("#loaderClipRect");
+      const solid = $("#loaderMaskSolid");
+      const feather = $("#loaderMaskFeather");
       const edge = $("#loaderEdge");
       const loader = $("#loader");
-      let p = 0;
-      const timer = setInterval(() => {
-        p += Math.random() * 8 + 5;
-        if (p >= 100) {
-          p = 100;
-          clearInterval(timer);
-          setTimeout(() => loader.classList.add("gone"), 650);
-        }
-        fill.style.width = `${p}%`;
-        rect.setAttribute("width", String(1800 * p / 100));
-        edge.setAttribute("x", String(1800 * p / 100));
-      }, 115);
+      if (sessionStorage.getItem("tdb_loader_seen") || window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+        loader.classList.add("gone");
+        return;
+      }
+      const duration = 1850;
+      const featherWidth = 120;
+      const ease = (x) => 1 - Math.pow(1 - x, 3);
+      let start = null;
+      const draw = (progress) => {
+        const eased = ease(progress);
+        const sweep = 1800 * eased;
+        const solidWidth = Math.max(0, Math.min(1800, sweep - featherWidth * 0.5));
+        const featherX = Math.max(-featherWidth, Math.min(1800, sweep - featherWidth * 0.5));
+        solid.setAttribute("width", solidWidth.toFixed(2));
+        feather.setAttribute("x", featherX.toFixed(2));
+        edge.setAttribute("x", Math.max(0, Math.min(1795, sweep - 2)).toFixed(2));
+        edge.style.opacity = progress < 0.985 ? "1" : String(Math.max(0, (1 - progress) / 0.015));
+        fill.style.transform = `scaleX(${eased})`;
+      };
+      const finish = () => {
+        draw(1);
+        sessionStorage.setItem("tdb_loader_seen", "1");
+        setTimeout(() => loader.classList.add("gone"), 220);
+      };
+      const step = (now) => {
+        if (!start) start = now;
+        const progress = Math.min(1, (now - start) / duration);
+        draw(progress);
+        if (progress < 1) requestAnimationFrame(step);
+        else finish();
+      };
+      requestAnimationFrame(step);
     }
 
     function initReviewRail() {
       const rail = $("#reviewsTrack");
-      let paused = false;
+      const controls = $$("[data-review-control]");
+      let hoverPaused = false;
       let dragging = false;
       let startX = 0;
       let startScroll = 0;
+      let pauseUntil = 0;
+      const cardStep = () => {
+        const card = rail.querySelector(".review-card");
+        if (!card) return 340;
+        const styles = getComputedStyle(rail);
+        const gap = parseFloat(styles.columnGap || styles.gap || "0");
+        return card.getBoundingClientRect().width + gap;
+      };
+      const pauseBriefly = (ms = 1200) => {
+        pauseUntil = performance.now() + ms;
+      };
+      const normalize = () => {
+        const half = rail.scrollWidth / 2;
+        if (!half) return;
+        if (rail.scrollLeft >= half) rail.scrollLeft -= half;
+      };
       const down = (event) => {
+        if (event.pointerType === "mouse" && event.button !== 0) return;
         dragging = true;
-        paused = true;
-        startX = event.touches ? event.touches[0].pageX : event.pageX;
+        pauseBriefly(1800);
+        rail.classList.add("dragging");
+        startX = event.clientX;
         startScroll = rail.scrollLeft;
+        rail.setPointerCapture?.(event.pointerId);
       };
       const move = (event) => {
         if (!dragging) return;
-        const x = event.touches ? event.touches[0].pageX : event.pageX;
-        rail.scrollLeft = startScroll - (x - startX) * 1.35;
+        event.preventDefault();
+        rail.scrollLeft = startScroll - (event.clientX - startX) * 1.18;
+        normalize();
       };
-      const up = () => {
+      const up = (event) => {
         dragging = false;
-        setTimeout(() => { paused = false; }, 900);
+        pauseBriefly(900);
+        rail.classList.remove("dragging");
+        if (event?.pointerId !== undefined) rail.releasePointerCapture?.(event.pointerId);
       };
-      rail.addEventListener("mouseenter", () => paused = true);
-      rail.addEventListener("mouseleave", () => { paused = false; dragging = false; });
-      rail.addEventListener("mousedown", down);
-      rail.addEventListener("mousemove", move);
-      window.addEventListener("mouseup", up);
-      rail.addEventListener("touchstart", down, { passive: true });
-      rail.addEventListener("touchmove", move, { passive: true });
-      rail.addEventListener("touchend", up);
-      const tick = () => {
-        if (!paused && rail.scrollWidth > 0) {
-          rail.scrollLeft += 0.58;
+      rail.addEventListener("mouseenter", () => hoverPaused = true);
+      rail.addEventListener("mouseleave", () => { hoverPaused = false; dragging = false; rail.classList.remove("dragging"); });
+      rail.addEventListener("focusin", () => hoverPaused = true);
+      rail.addEventListener("focusout", () => hoverPaused = false);
+      rail.addEventListener("pointerdown", down);
+      rail.addEventListener("pointermove", move);
+      rail.addEventListener("pointerup", up);
+      rail.addEventListener("pointercancel", up);
+      rail.addEventListener("wheel", () => pauseBriefly(1200), { passive: true });
+      controls.forEach((button) => {
+        button.addEventListener("click", () => {
+          pauseBriefly(1800);
           const half = rail.scrollWidth / 2;
-          if (rail.scrollLeft >= half) rail.scrollLeft -= half;
+          const dir = button.dataset.reviewControl === "next" ? 1 : -1;
+          if (dir < 0 && rail.scrollLeft < cardStep() && half) rail.scrollLeft += half;
+          rail.scrollBy({ left: cardStep() * dir, behavior: "smooth" });
+        });
+      });
+      const tick = () => {
+        if (!hoverPaused && !dragging && performance.now() > pauseUntil && rail.scrollWidth > 0) {
+          rail.scrollLeft += 0.5;
+          normalize();
         }
         requestAnimationFrame(tick);
       };
@@ -1840,7 +2085,6 @@
 
     render();
     initSmoothScroll();
-    initCursor();
     initLoader();
     initReviewRail();
     setInterval(updateOpenStatus, 60000);
