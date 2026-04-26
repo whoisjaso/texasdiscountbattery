@@ -801,14 +801,11 @@
       gap: 22px;
       overflow-x: auto;
       overscroll-behavior-x: contain;
-      scroll-behavior: smooth;
-      scroll-snap-type: x mandatory;
+      scroll-behavior: auto;
       scrollbar-width: none;
       padding: 8px 32px 20px;
       user-select: none;
-      cursor: grab;
     }
-    .reviews-track.dragging { cursor: grabbing; scroll-behavior: auto; }
     .reviews-track::-webkit-scrollbar { display: none; }
     .review-card {
       flex: 0 0 clamp(300px, 31vw, 420px);
@@ -821,7 +818,6 @@
       border: 1px solid var(--line);
       border-radius: 8px;
       text-align: center;
-      scroll-snap-align: center;
       box-shadow: inset 0 1px 0 rgba(255,255,255,0.045), 0 24px 72px rgba(0,0,0,0.16);
       transition: transform 0.48s var(--ease-out), border-color 0.48s var(--ease-out), background 0.48s var(--ease-out), box-shadow 0.48s var(--ease-out);
     }
@@ -2189,10 +2185,7 @@
       const rail = $("#reviewsTrack");
       const controls = $$("[data-review-control]");
       let hoverPaused = false;
-      let dragging = false;
-      let startX = 0;
-      let startScroll = 0;
-      let pauseUntil = 0;
+      let lastTick = performance.now();
       const cardStep = () => {
         const card = rail.querySelector(".review-card");
         if (!card) return 340;
@@ -2200,61 +2193,41 @@
         const gap = parseFloat(styles.columnGap || styles.gap || "0");
         return card.getBoundingClientRect().width + gap;
       };
-      const pauseBriefly = (ms = 1200) => {
-        pauseUntil = performance.now() + ms;
+      const loopPoint = () => {
+        const cards = Array.from(rail.children);
+        const midpoint = cards[Math.floor(cards.length / 2)];
+        const first = cards[0];
+        if (!first || !midpoint) return rail.scrollWidth / 2;
+        return midpoint.offsetLeft - first.offsetLeft;
       };
       const normalize = () => {
-        const half = rail.scrollWidth / 2;
-        if (!half) return;
-        if (rail.scrollLeft >= half) rail.scrollLeft -= half;
+        const loop = loopPoint();
+        if (!loop) return;
+        while (rail.scrollLeft >= loop) rail.scrollLeft -= loop;
+        while (rail.scrollLeft < 0) rail.scrollLeft += loop;
       };
-      const down = (event) => {
-        if (event.pointerType === "mouse" && event.button !== 0) return;
-        dragging = true;
-        pauseBriefly(1800);
-        rail.classList.add("dragging");
-        startX = event.clientX;
-        startScroll = rail.scrollLeft;
-        rail.setPointerCapture?.(event.pointerId);
-      };
-      const move = (event) => {
-        if (!dragging) return;
-        event.preventDefault();
-        rail.scrollLeft = startScroll - (event.clientX - startX) * 1.18;
-        normalize();
-      };
-      const up = (event) => {
-        dragging = false;
-        pauseBriefly(900);
-        rail.classList.remove("dragging");
-        if (event?.pointerId !== undefined) rail.releasePointerCapture?.(event.pointerId);
-      };
-      rail.addEventListener("mouseenter", () => hoverPaused = true);
-      rail.addEventListener("mouseleave", () => { hoverPaused = false; dragging = false; rail.classList.remove("dragging"); });
-      rail.addEventListener("focusin", () => hoverPaused = true);
-      rail.addEventListener("focusout", () => hoverPaused = false);
-      rail.addEventListener("pointerdown", down);
-      rail.addEventListener("pointermove", move);
-      rail.addEventListener("pointerup", up);
-      rail.addEventListener("pointercancel", up);
-      rail.addEventListener("wheel", () => pauseBriefly(1200), { passive: true });
+      if (window.matchMedia("(pointer: fine)").matches) {
+        rail.addEventListener("mouseenter", () => hoverPaused = true);
+        rail.addEventListener("mouseleave", () => hoverPaused = false);
+      }
       controls.forEach((button) => {
         button.addEventListener("click", () => {
-          pauseBriefly(1800);
-          const half = rail.scrollWidth / 2;
           const dir = button.dataset.reviewControl === "next" ? 1 : -1;
-          if (dir < 0 && rail.scrollLeft < cardStep() && half) rail.scrollLeft += half;
-          rail.scrollBy({ left: cardStep() * dir, behavior: "smooth" });
+          if (dir < 0 && rail.scrollLeft < cardStep()) rail.scrollLeft += loopPoint();
+          rail.scrollLeft += cardStep() * dir;
+          normalize();
         });
       });
-      const tick = () => {
-        if (!hoverPaused && !dragging && performance.now() > pauseUntil && rail.scrollWidth > 0) {
-          rail.scrollLeft += 0.5;
+      const tick = (now) => {
+        const delta = Math.min(40, now - lastTick);
+        lastTick = now;
+        if (!hoverPaused && rail.scrollWidth > 0) {
+          rail.scrollLeft += delta * 0.034;
           normalize();
         }
         requestAnimationFrame(tick);
       };
-      tick();
+      requestAnimationFrame(tick);
     }
 
     $$(".lang-toggle button").forEach((button) => {
