@@ -2897,6 +2897,117 @@
       .visit-title { font-size: 3.4rem !important; }
       .address { font-size: 2rem !important; }
     }
+
+    /* Brand-consistent dark pass: remove the bright white surfaces while keeping the repaired proportions. */
+    .nav {
+      color: var(--white) !important;
+      background:
+        linear-gradient(180deg, rgba(16,31,54,0.92), rgba(7,16,28,0.88)) !important;
+      border-color: rgba(192,200,212,0.24) !important;
+      box-shadow: 0 18px 68px rgba(0,0,0,0.32) !important;
+    }
+    .nav.scrolled {
+      background:
+        linear-gradient(180deg, rgba(18,37,65,0.95), rgba(7,16,28,0.92)) !important;
+      box-shadow: 0 16px 54px rgba(0,0,0,0.34) !important;
+    }
+    .brand-mark {
+      background-image: url("assets/logo-nav-transparent.png") !important;
+      filter: saturate(1.05) drop-shadow(0 1px 0 rgba(244,246,250,0.16)) drop-shadow(0 10px 24px rgba(0,0,0,0.24));
+    }
+    .nav-links { color: rgba(244,246,250,0.86) !important; }
+    .nav-links a:hover { color: var(--white) !important; }
+    .nav .nav-call,
+    .nav .btn {
+      color: var(--white) !important;
+      border-color: rgba(192,200,212,0.25) !important;
+      background: rgba(244,246,250,0.045) !important;
+    }
+    .lang-toggle {
+      background: rgba(244,246,250,0.045) !important;
+      border-color: rgba(192,200,212,0.24) !important;
+    }
+    .lang-toggle button { color: rgba(244,246,250,0.54) !important; }
+    .lang-toggle button.active {
+      color: var(--white) !important;
+      background: var(--blue-2) !important;
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.16), 0 8px 20px rgba(0,51,160,0.28) !important;
+    }
+
+    #service {
+      background:
+        radial-gradient(ellipse 74% 48% at 10% 0%, rgba(30,79,191,0.19), transparent 66%),
+        radial-gradient(ellipse 62% 42% at 100% 22%, rgba(200,21,48,0.14), transparent 64%),
+        linear-gradient(180deg, #07101c 0%, #0a1526 52%, #050a12 100%) !important;
+      color: var(--white) !important;
+    }
+    #service::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      background-image:
+        linear-gradient(rgba(192,200,212,0.06) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(192,200,212,0.055) 1px, transparent 1px);
+      background-size: 118px 118px;
+      mask-image: radial-gradient(ellipse 82% 66% at 50% 44%, #000 8%, transparent 82%);
+      opacity: 0.45;
+    }
+    #service .section-head {
+      border-bottom-color: rgba(192,200,212,0.16) !important;
+    }
+    #service .section-kicker { color: var(--red-2) !important; }
+    #service .section-title { color: var(--white) !important; }
+    #service .section-lede { color: rgba(220,225,234,0.75) !important; }
+    #service .service-card {
+      color: var(--white) !important;
+      background:
+        linear-gradient(180deg, rgba(18,37,65,0.84), rgba(7,16,28,0.92)) !important;
+      border-color: rgba(192,200,212,0.18) !important;
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.05), 0 26px 72px rgba(0,0,0,0.24) !important;
+    }
+    #service .service-card::before {
+      background:
+        linear-gradient(135deg, rgba(30,79,191,0.22), transparent 42%),
+        linear-gradient(225deg, rgba(200,21,48,0.16), transparent 44%),
+        linear-gradient(180deg, rgba(244,246,250,0.055), transparent) !important;
+    }
+    #service .service-card:nth-child(2)::before {
+      background:
+        linear-gradient(135deg, rgba(192,200,212,0.13), transparent 42%),
+        linear-gradient(225deg, rgba(30,79,191,0.17), transparent 44%),
+        linear-gradient(180deg, rgba(244,246,250,0.055), transparent) !important;
+    }
+    #service .service-card:nth-child(3)::before {
+      background:
+        linear-gradient(135deg, rgba(200,21,48,0.21), transparent 42%),
+        linear-gradient(225deg, rgba(30,79,191,0.14), transparent 44%),
+        linear-gradient(180deg, rgba(244,246,250,0.055), transparent) !important;
+    }
+    #service .service-card:hover {
+      color: var(--white) !important;
+      background:
+        linear-gradient(180deg, rgba(22,45,78,0.9), rgba(8,18,32,0.95)) !important;
+      border-color: rgba(192,200,212,0.3) !important;
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.07), 0 36px 92px rgba(0,0,0,0.32) !important;
+    }
+    #service .service-card h3 {
+      color: var(--white) !important;
+    }
+    #service .service-card p {
+      color: rgba(220,225,234,0.76) !important;
+    }
+    #service .service-arrow {
+      color: var(--white) !important;
+      border-color: rgba(192,200,212,0.24) !important;
+      background: rgba(244,246,250,0.055) !important;
+    }
+
+    .marquee {
+      background: rgba(8,16,28,0.84) !important;
+      border-top-color: rgba(192,200,212,0.14) !important;
+      border-bottom-color: rgba(192,200,212,0.14) !important;
+    }
   </style>
 </head>
 <body>
