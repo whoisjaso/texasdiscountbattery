@@ -205,7 +205,7 @@
   </script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Serif+Display:ital@0;1&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Graduate&family=DM+Serif+Display:ital@0;1&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <!--
     Huashu design pass:
     - Context: real Texas Discount Battery logo assets, red/blue/silver identity, Houston/Hobby Airport local service proof.
@@ -213,7 +213,16 @@
     - Neuro/conversion frame: reduce uncertainty first, show social proof second, keep primary actions always obvious.
   -->
   <style>
+    @font-face {
+      font-family: "TDB Logo Display";
+      src: url("assets/tdb-logo-display.ttf") format("truetype");
+      font-weight: 400;
+      font-style: normal;
+      font-display: swap;
+    }
+
     :root {
+      --font-logo: "TDB Logo Display", "Graduate", Georgia, serif;
       --ink: #06101f;
       --ink-2: #0b1a2f;
       --ink-3: #122541;
@@ -265,11 +274,12 @@
     img, svg { display: block; }
 
     .display {
-      font-family: Anton, Impact, sans-serif;
+      font-family: var(--font-logo);
       font-weight: 400;
       text-transform: uppercase;
-      letter-spacing: 0.01em;
-      line-height: 1;
+      letter-spacing: 0;
+      line-height: 1.12;
+      font-style: italic;
     }
     .serif {
       font-family: "DM Serif Display", Georgia, serif;
@@ -357,7 +367,7 @@
       filter: drop-shadow(0 34px 80px rgba(0,0,0,0.55));
     }
     .loader-logo-photo {
-      opacity: 0.06;
+      opacity: 0;
       filter: grayscale(1) contrast(1.1);
     }
     .loader-outline {
@@ -946,19 +956,43 @@
       align-items: center;
       text-align: center;
     }
+    .specs-grid > div {
+      min-width: 0;
+      display: grid;
+      justify-items: center;
+      text-align: center;
+    }
     .big-score {
       font-size: clamp(110px, 14vw, 220px);
+      display: inline-flex;
+      align-items: flex-start;
+      justify-content: center;
+      width: max-content;
+      margin: 0 auto;
+      gap: 0.055em;
+      line-height: 0.92;
+      padding: 0.04em 0.08em 0.08em;
+    }
+    .big-score .score-number {
+      display: block;
+      min-width: 2.38em;
+      text-align: center;
     }
     .big-score small {
+      display: block;
       font-size: 0.26em;
       color: var(--red-2);
-      vertical-align: top;
       -webkit-text-fill-color: var(--red-2);
+      line-height: 1;
+      margin-top: 0.08em;
+      transform: translateX(-0.06em);
     }
     .spec-headline {
-      font-size: clamp(34px, 3.4vw, 56px);
-      max-width: 14ch;
+      font-size: clamp(32px, 3.1vw, 50px);
+      line-height: 1.12;
+      max-width: 22ch;
       margin: 0 auto;
+      text-align: center;
     }
     .stats-row {
       display: grid;
@@ -1338,10 +1372,42 @@
     .map-panel {
       position: relative;
       min-height: 660px;
-      background: #04091a;
+      isolation: isolate;
+      background:
+        radial-gradient(ellipse 70% 52% at 42% 35%, rgba(30,79,191,0.24), transparent 66%),
+        radial-gradient(ellipse 48% 36% at 78% 76%, rgba(200,21,48,0.18), transparent 70%),
+        linear-gradient(180deg, #07111f 0%, #04070d 100%);
       overflow: hidden;
+      box-shadow:
+        inset 1px 0 0 rgba(192,200,212,0.14),
+        inset 0 1px 0 rgba(244,246,250,0.08),
+        inset 0 -90px 130px rgba(0,0,0,0.28);
+    }
+    .map-panel::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(192,200,212,0.055) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(192,200,212,0.055) 1px, transparent 1px);
+      background-size: 58px 58px;
+      mask-image: radial-gradient(ellipse 86% 70% at 50% 48%, #000 26%, transparent 88%);
+      pointer-events: none;
+      z-index: 0;
+    }
+    .map-panel::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(90deg, rgba(4,7,13,0.34), transparent 20%, transparent 76%, rgba(4,7,13,0.48)),
+        linear-gradient(180deg, rgba(4,7,13,0.28), transparent 30%, rgba(4,7,13,0.24));
+      pointer-events: none;
+      z-index: 2;
     }
     .map-panel svg {
+      position: relative;
+      z-index: 1;
       width: 100%;
       height: 100%;
       min-height: 660px;
@@ -1357,9 +1423,11 @@
       min-height: 46px;
       padding: 0 18px;
       border-radius: 999px;
-      background: var(--white);
-      color: var(--ink);
-      border: 1px solid rgba(6,16,31,0.18);
+      background: rgba(6,16,31,0.9);
+      color: var(--white);
+      border: 1px solid rgba(244,246,250,0.24);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
       font-weight: 800;
       box-shadow: 0 16px 34px rgba(0,0,0,0.28);
       transition: transform 0.22s ease, background 0.22s ease, color 0.22s ease;
@@ -1495,7 +1563,32 @@
       .section-head { grid-template-columns: 1fr; margin: 0 auto 44px; gap: 18px; }
       .section-title { font-size: clamp(39px, 11vw, 64px); }
       .service-card { min-height: 280px; padding: 34px 24px 30px; }
-      .specs { padding: 72px 18px; }
+      .specs { padding: 68px 18px 76px; }
+      .specs-grid {
+        gap: 42px;
+        max-width: 100%;
+      }
+      .big-score {
+        font-size: clamp(86px, 26vw, 116px);
+        gap: 0.035em;
+      }
+      .big-score .score-number { min-width: 2.28em; }
+      .big-score small {
+        font-size: 0.24em;
+        margin-top: 0.1em;
+        transform: translateX(-0.08em);
+      }
+      .specs .fact-sub {
+        max-width: 31ch;
+        margin-left: auto;
+        margin-right: auto;
+        line-height: 1.45;
+      }
+      .spec-headline {
+        font-size: clamp(25px, 7.2vw, 34px);
+        line-height: 1.12;
+        max-width: min(100%, 18ch);
+      }
       .stats-row { grid-template-columns: 1fr; }
       .answer-grid { grid-template-columns: 1fr; }
       .answer-card { min-height: 0; padding: 25px 22px; }
@@ -1529,12 +1622,12 @@
       --ink-2: #0d1218;
       --ink-3: #151d28;
       --ink-4: #202b3a;
-      --white: #f7f4ee;
-      --white-2: #ebe5db;
-      --paper: #f3f0e8;
-      --paper-2: #fffdfa;
-      --silver: #c9c5bb;
-      --silver-2: #989891;
+      --white: #f4f6fa;
+      --white-2: #dce1ea;
+      --paper: #eef2f7;
+      --paper-2: #f8fafc;
+      --silver: #c0c8d4;
+      --silver-2: #8b96a6;
       --silver-3: #62676f;
       --blue: #0b3fb4;
       --blue-2: #245fdf;
@@ -1542,12 +1635,12 @@
       --red: #c50d2f;
       --red-2: #e11d3f;
       --red-deep: #8d0922;
-      --line: rgba(235, 229, 219, 0.14);
-      --line-strong: rgba(235, 229, 219, 0.28);
+      --line: rgba(192, 200, 212, 0.14);
+      --line-strong: rgba(192, 200, 212, 0.28);
       --shadow: rgba(0, 0, 0, 0.48);
       --surface: rgba(12, 17, 24, 0.72);
       --surface-2: rgba(16, 23, 33, 0.84);
-      --surface-light: rgba(255, 253, 250, 0.94);
+      --surface-light: rgba(248, 250, 252, 0.94);
       --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
       --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
     }
@@ -1575,29 +1668,30 @@
       opacity: 0.26;
     }
     .display {
-      font-family: "Bebas Neue", Impact, sans-serif;
-      letter-spacing: 0.012em;
-      line-height: 0.94;
+      font-family: var(--font-logo);
+      letter-spacing: 0;
+      line-height: 1.12;
+      font-style: italic;
     }
     .chrome {
-      background: linear-gradient(180deg, #ffffff 0%, #eee9df 32%, #b8b5ad 70%, #fffaf0 100%);
+      background: linear-gradient(180deg, #ffffff 0%, #e8edf5 32%, #aeb7c5 70%, #f4f6fa 100%);
       -webkit-background-clip: text;
       background-clip: text;
     }
-    .stroke { -webkit-text-stroke: 1.1px rgba(247,244,238,0.9); }
+    .stroke { -webkit-text-stroke: 1.1px rgba(244,246,250,0.9); }
 
     .nav {
       top: 16px;
       max-width: 1380px;
       grid-template-columns: minmax(180px, 0.68fr) minmax(500px, 1.7fr) minmax(230px, 0.72fr);
       padding: 8px 14px 8px 16px;
-      background: rgba(247,244,238,0.86);
+      background: rgba(244,246,250,0.86);
       border-color: rgba(255,255,255,0.64);
       box-shadow: 0 18px 70px rgba(0,0,0,0.22);
     }
     .nav.scrolled {
       top: 10px;
-      background: rgba(247,244,238,0.95);
+      background: rgba(244,246,250,0.95);
       box-shadow: 0 16px 54px rgba(0,0,0,0.26);
     }
     .brand-mark {
@@ -1639,7 +1733,7 @@
       justify-content: center;
       padding: 138px 32px 54px;
       background:
-        linear-gradient(180deg, rgba(255,253,250,0.03), transparent 42%),
+        linear-gradient(180deg, rgba(248,250,252,0.03), transparent 42%),
         linear-gradient(120deg, rgba(36,95,223,0.14), transparent 34%),
         linear-gradient(245deg, rgba(197,13,47,0.13), transparent 38%);
     }
@@ -1673,7 +1767,7 @@
       content: "";
       position: absolute;
       inset: 20% 4%;
-      border: 1px solid rgba(235,229,219,0.16);
+      border: 1px solid rgba(192,200,212,0.16);
       transform: translateZ(-50px);
     }
     .energy-frame::after {
@@ -1699,7 +1793,7 @@
       border-radius: 8px;
       background:
         linear-gradient(90deg, rgba(255,255,255,0.08), transparent 16%, rgba(255,255,255,0.12) 52%, transparent 78%),
-        linear-gradient(135deg, rgba(255,253,250,0.92), rgba(219,216,207,0.84));
+        linear-gradient(135deg, rgba(248,250,252,0.92), rgba(217,224,234,0.84));
       border: 1px solid rgba(255,255,255,0.62);
       box-shadow:
         inset 0 1px 0 rgba(255,255,255,0.78),
@@ -1729,7 +1823,7 @@
       width: 34px;
       height: 84px;
       border-radius: 5px;
-      background: linear-gradient(180deg, #f7f4ee, #9d9a92);
+      background: linear-gradient(180deg, #f4f6fa, #9aa4b2);
       box-shadow: inset 0 1px 0 rgba(255,255,255,0.8);
     }
     .terminal-left { left: -32px; }
@@ -1760,7 +1854,7 @@
     .signal-line {
       position: absolute;
       height: 1px;
-      background: linear-gradient(90deg, transparent, rgba(247,244,238,0.56), transparent);
+      background: linear-gradient(90deg, transparent, rgba(244,246,250,0.56), transparent);
       transform: translateZ(12px);
       opacity: 0.46;
     }
@@ -1787,19 +1881,19 @@
     }
     .hero-copy {
       max-width: 760px;
-      color: rgba(247,244,238,0.86);
+      color: rgba(244,246,250,0.86);
       font-size: clamp(19px, 1.5vw, 23px);
     }
     .hero-actions { margin-top: 30px; }
     .hero-address-link {
-      color: rgba(235,229,219,0.82);
-      border-bottom-color: rgba(235,229,219,0.32);
+      color: rgba(192,200,212,0.82);
+      border-bottom-color: rgba(192,200,212,0.32);
     }
     .hero-foot {
       width: min(1060px, 100%);
       margin-top: 56px;
-      border-color: rgba(235,229,219,0.18);
-      background: rgba(255,253,250,0.06);
+      border-color: rgba(192,200,212,0.18);
+      background: rgba(248,250,252,0.06);
       box-shadow: 0 38px 100px rgba(0,0,0,0.28);
     }
     .hero-foot > div {
@@ -1817,7 +1911,7 @@
     .fact-value { font-family: "Bebas Neue", Impact, sans-serif; letter-spacing: 0.01em; }
 
     .marquee {
-      background: rgba(247,244,238,0.94);
+      background: rgba(244,246,250,0.94);
       border-color: rgba(8,10,15,0.08);
     }
     .marquee-track { color: #5b6470; }
@@ -1827,7 +1921,7 @@
     .section-head {
       max-width: 1120px;
       margin-bottom: 62px;
-      border-bottom-color: rgba(235,229,219,0.16);
+      border-bottom-color: rgba(192,200,212,0.16);
     }
     .section-title {
       font-size: clamp(58px, 7vw, 108px);
@@ -1835,27 +1929,28 @@
     }
     .section-lede {
       font-size: clamp(17px, 1.3vw, 20px);
-      color: rgba(235,229,219,0.72);
+      color: rgba(192,200,212,0.72);
     }
 
     #service,
     .answer-section {
       background:
-        linear-gradient(180deg, rgba(255,255,255,0.72), rgba(255,255,255,0.3)),
-        var(--paper);
-      color: #090d13;
+        radial-gradient(ellipse 72% 44% at 8% 0%, rgba(36,95,223,0.2), transparent 62%),
+        radial-gradient(ellipse 54% 36% at 100% 24%, rgba(197,13,47,0.13), transparent 66%),
+        linear-gradient(180deg, #080d16 0%, #0b111b 54%, #070a10 100%);
+      color: var(--white);
     }
     #service .section-head,
-    .answer-section .section-head { border-bottom-color: rgba(8,10,15,0.12); }
+    .answer-section .section-head { border-bottom-color: rgba(192,200,212,0.16); }
     #service .section-lede,
     .answer-section .section-lede,
-    .answer-card p { color: #4f5966; }
+    .answer-card p { color: rgba(220,225,234,0.76); }
     #service .section-title,
-    .answer-section .section-title { color: #0b1118; }
+    .answer-section .section-title { color: var(--white); }
     #service .service-card {
       min-height: 350px;
       background:
-        linear-gradient(180deg, rgba(255,255,255,0.92), rgba(247,244,238,0.86));
+        linear-gradient(180deg, rgba(255,255,255,0.92), rgba(244,246,250,0.86));
       color: #0b1118;
       border-color: rgba(8,10,15,0.1);
       box-shadow: 0 22px 70px rgba(8,10,15,0.08);
@@ -1871,7 +1966,7 @@
       box-shadow: 0 32px 90px rgba(8,10,15,0.18);
     }
     #service .service-card:hover .card-kicker,
-    #service .service-card:hover p { color: rgba(247,244,238,0.86); }
+    #service .service-card:hover p { color: rgba(244,246,250,0.86); }
     .service-card,
     .answer-card,
     .review-card,
@@ -1886,19 +1981,31 @@
         #0a0f16;
     }
     .big-score { text-shadow: 0 26px 74px rgba(0,0,0,0.28); }
-    .stats-row { border-top-color: rgba(235,229,219,0.14); }
+    .specs .section-kicker {
+      width: 100%;
+      text-align: center;
+      margin-bottom: 6px;
+    }
+    .specs .fact-sub {
+      width: min(100%, 42ch);
+      margin: 8px auto 0;
+      text-align: center;
+    }
+    .stats-row { border-top-color: rgba(192,200,212,0.14); }
 
     .answer-card {
-      background: rgba(255,253,250,0.86);
-      border-color: rgba(8,10,15,0.1);
-      box-shadow: 0 20px 70px rgba(8,10,15,0.08);
+      background:
+        linear-gradient(180deg, rgba(17,24,34,0.9), rgba(9,14,22,0.96));
+      border-color: rgba(192,200,212,0.16);
+      box-shadow: 0 24px 80px rgba(0,0,0,0.22);
     }
     .answer-card:hover {
-      background: #fffdfa;
-      border-color: rgba(8,10,15,0.2);
-      box-shadow: 0 28px 88px rgba(8,10,15,0.13);
+      background:
+        linear-gradient(180deg, rgba(20,31,48,0.95), rgba(10,16,25,0.98));
+      border-color: rgba(36,95,223,0.32);
+      box-shadow: 0 30px 92px rgba(0,0,0,0.28);
     }
-    .answer-label { color: var(--red); }
+    .answer-label { color: var(--red-2); }
     .local-footprint {
       background: #0b1118;
       border-color: rgba(8,10,15,0.1);
@@ -1910,28 +2017,28 @@
     .reviews-wrap::after { background: linear-gradient(270deg, #090d13, transparent); }
     .review-card {
       background: rgba(17,24,34,0.74);
-      border-color: rgba(235,229,219,0.14);
+      border-color: rgba(192,200,212,0.14);
     }
-    .review-quote { color: rgba(247,244,238,0.92); }
+    .review-quote { color: rgba(244,246,250,0.92); }
 
     .crew-card {
       background:
         linear-gradient(180deg, rgba(24,32,44,0.78), rgba(10,15,22,0.9)),
-        linear-gradient(135deg, rgba(255,253,250,0.035), transparent 38%);
+        linear-gradient(135deg, rgba(248,250,252,0.035), transparent 38%);
     }
     .crew-card::before {
       background: linear-gradient(to top, rgba(7,9,13,0.96), transparent 64%);
     }
     .portrait-note {
-      border-color: rgba(235,229,219,0.16);
-      background: rgba(247,244,238,0.08);
+      border-color: rgba(192,200,212,0.16);
+      background: rgba(244,246,250,0.08);
     }
 
     .process-row {
       grid-template-columns: 90px minmax(220px, 0.9fr) minmax(300px, 1.25fr) 140px;
-      border-top-color: rgba(235,229,219,0.14);
+      border-top-color: rgba(192,200,212,0.14);
     }
-    .process-row:hover { background: rgba(247,244,238,0.035); }
+    .process-row:hover { background: rgba(244,246,250,0.035); }
 
     .asset-strip {
       background: var(--paper);
@@ -1946,17 +2053,18 @@
 
     .visit {
       background: #090d13;
-      border-top-color: rgba(235,229,219,0.14);
+      border-top-color: rgba(192,200,212,0.14);
     }
     .map-panel {
       background:
-        linear-gradient(135deg, rgba(36,95,223,0.08), transparent 44%),
-        #04070b;
+        radial-gradient(ellipse 70% 52% at 42% 35%, rgba(30,79,191,0.24), transparent 66%),
+        radial-gradient(ellipse 48% 36% at 78% 76%, rgba(200,21,48,0.18), transparent 70%),
+        linear-gradient(180deg, #07111f 0%, #04070d 100%);
     }
     .footer {
       background:
         linear-gradient(180deg, #090d13, #07090d);
-      border-top: 1px solid rgba(235,229,219,0.12);
+      border-top: 1px solid rgba(192,200,212,0.12);
     }
 
     @media (max-width: 1180px) {
@@ -2007,13 +2115,259 @@
         box-shadow: none;
       }
       .hero-foot > div {
-        border: 1px solid rgba(235,229,219,0.16);
+        border: 1px solid rgba(192,200,212,0.16);
         background: rgba(17,24,34,0.76);
       }
       .section { padding: 86px 18px; }
       .section-title { font-size: clamp(49px, 14vw, 72px); }
       #service .service-card { min-height: 0; }
       .process-row { grid-template-columns: 1fr; }
+    }
+
+    /* Red / blue / gray refinement pass */
+    .hero-system { display: none !important; }
+    .hero-asset {
+      opacity: 0.15 !important;
+      left: 50%;
+      top: 50%;
+      width: min(960px, 76vw);
+      transform: translate(calc(-50% + var(--mx)), calc(-50% + var(--my)));
+      z-index: 1;
+      filter: saturate(1.02) contrast(1.06) drop-shadow(0 36px 86px rgba(0,0,0,0.34));
+    }
+    .loader-logo { width: min(1040px, 90vw); }
+    #service,
+    .answer-section {
+      background:
+        radial-gradient(ellipse 72% 44% at 8% 0%, rgba(36,95,223,0.2), transparent 62%),
+        radial-gradient(ellipse 54% 36% at 100% 24%, rgba(197,13,47,0.13), transparent 66%),
+        linear-gradient(180deg, #080d16 0%, #0b111b 54%, #070a10 100%) !important;
+      color: var(--white);
+    }
+    #service .section-head,
+    .answer-section .section-head { border-bottom-color: rgba(192,200,212,0.16); }
+    #service .section-title,
+    .answer-section .section-title { color: var(--white); }
+    #service .section-lede,
+    .answer-section .section-lede { color: rgba(220,225,234,0.76); }
+    #service .service-card {
+      color: var(--service-text);
+      background: var(--service-panel);
+      border-color: var(--service-edge);
+      box-shadow: 0 28px 82px rgba(8,15,28,0.12);
+    }
+    #service .service-card::before {
+      background: var(--service-sheen);
+      opacity: 0.96;
+    }
+    #service .service-card:nth-child(1) {
+      --service-panel: linear-gradient(155deg, #0033a0 0%, #0b3fb4 46%, #061f68 100%);
+      --service-text: #f4f6fa;
+      --service-copy: rgba(244,246,250,0.88);
+      --service-kicker: #f4f6fa;
+      --service-edge: rgba(36,95,223,0.68);
+      --service-sheen: linear-gradient(180deg, rgba(244,246,250,0.16), rgba(6,31,104,0.18));
+    }
+    #service .service-card:nth-child(2) {
+      --service-panel: linear-gradient(155deg, #dce1ea 0%, #b8c1ce 48%, #8b96a6 100%);
+      --service-text: #07101c;
+      --service-copy: #323c4a;
+      --service-kicker: #c50d2f;
+      --service-edge: rgba(96,106,122,0.36);
+      --service-sheen: linear-gradient(180deg, rgba(255,255,255,0.46), rgba(96,106,122,0.14));
+    }
+    #service .service-card:nth-child(3) {
+      --service-panel: linear-gradient(155deg, #c50d2f 0%, #e11d3f 42%, #8d0922 100%);
+      --service-text: #f4f6fa;
+      --service-copy: rgba(244,246,250,0.88);
+      --service-kicker: #f4f6fa;
+      --service-edge: rgba(225,29,63,0.66);
+      --service-sheen: linear-gradient(180deg, rgba(244,246,250,0.14), rgba(141,9,34,0.2));
+    }
+    #service .service-card .card-kicker,
+    #service .service-card:hover .card-kicker { color: var(--service-kicker); }
+    #service .service-card p,
+    #service .service-card:hover p { color: var(--service-copy); }
+    #service .service-card:hover {
+      color: var(--service-text);
+      border-color: var(--service-edge);
+      box-shadow: 0 36px 96px rgba(8,15,28,0.2);
+    }
+    #service .service-arrow { color: currentColor; }
+    .asset-strip {
+      background:
+        linear-gradient(135deg, rgba(0,51,160,0.08), transparent 34%),
+        linear-gradient(225deg, rgba(197,13,47,0.08), transparent 36%),
+        rgba(244,246,250,0.035);
+    }
+    .asset-strip img { width: min(760px, 100%); }
+
+    /* Logo-style display typography pass */
+    .display {
+      font-family: var(--font-logo);
+      font-style: italic;
+      letter-spacing: 0;
+      line-height: 1.12;
+      text-transform: uppercase;
+      text-wrap: balance;
+    }
+    .hero-title .line,
+    .section-title .word {
+      line-height: inherit;
+    }
+    .hero-title,
+    .section-title,
+    .visit-title,
+    .asset-copy h2,
+    .footer-ribbon {
+      overflow: visible;
+      padding-left: 0.18em;
+      padding-right: 0.18em;
+    }
+    .hero-title {
+      max-width: 11.5ch;
+      font-size: clamp(54px, 8.4vw, 132px);
+      line-height: 1.04;
+    }
+    .hero-title .line {
+      overflow: visible;
+      padding: 0.06em 0.18em 0.1em;
+    }
+    .section-title {
+      max-width: min(100%, 18ch);
+      font-size: clamp(38px, 5.6vw, 78px);
+      line-height: 1.1;
+    }
+    .section-title .word {
+      overflow: visible;
+      padding: 0.02em 0.16em 0.14em;
+    }
+    .section-title .word > span,
+    .hero-title .line span {
+      transform-origin: center;
+      backface-visibility: hidden;
+    }
+    .service-card h3,
+    .answer-card h3,
+    .crew-name,
+    .process-title,
+    .spec-headline,
+    .big-score,
+    .stat-num,
+    .local-fact strong,
+    .fact-value,
+    .visit-title,
+    .address,
+    .asset-copy h2 {
+      font-family: var(--font-logo);
+      font-style: italic;
+      font-weight: 400;
+      letter-spacing: 0;
+      line-height: 1.12;
+      overflow: visible;
+      padding-left: 0.08em;
+      padding-right: 0.08em;
+      text-wrap: balance;
+    }
+    .chrome {
+      -webkit-box-decoration-break: clone;
+      box-decoration-break: clone;
+    }
+    .service-card h3 { max-width: 13ch; font-size: clamp(26px, 2.7vw, 40px); }
+    .answer-card h3 { font-size: clamp(24px, 2.1vw, 36px); }
+    .process-title { font-size: clamp(28px, 3.2vw, 48px); }
+    .visit-title { max-width: 9ch; font-size: clamp(40px, 5vw, 72px); }
+    .asset-copy h2 { max-width: 11ch; font-size: clamp(36px, 5vw, 68px); }
+    .footer-ribbon { font-size: clamp(32px, 5.6vw, 70px); line-height: 1.14; }
+
+    /* Service cards: one clear headline, centered, in the pinned logo display face. */
+    #service .service-card {
+      justify-content: center;
+      min-height: 360px;
+      padding: clamp(38px, 4vw, 58px) clamp(24px, 3.2vw, 44px);
+    }
+    #service .service-card .card-kicker { display: none; }
+    .service-content {
+      position: relative;
+      z-index: 1;
+      width: 100%;
+      min-height: 100%;
+      display: grid;
+      justify-items: center;
+      align-content: center;
+      place-items: center;
+      gap: clamp(24px, 2.4vw, 30px);
+      text-align: center;
+    }
+    #service .service-card h3 {
+      margin: 0;
+      width: 100%;
+      max-width: min(100%, 12.5ch);
+      font-family: var(--font-logo);
+      font-style: italic;
+      font-size: clamp(40px, 4.65vw, 70px);
+      line-height: 1.08;
+      letter-spacing: 0;
+      text-align: center;
+      text-transform: uppercase;
+      overflow: visible;
+      padding: 0.06em 0.12em 0.14em;
+      transform: none;
+      transform-origin: center;
+      text-shadow: 0 18px 42px rgba(0,0,0,0.18);
+    }
+    #service .service-card p {
+      margin: 0 auto;
+      max-width: 30ch;
+      font-size: clamp(16px, 1.45vw, 20px);
+      line-height: 1.55;
+      text-align: center;
+    }
+    #service .service-arrow {
+      margin-top: 0;
+      width: 100%;
+      text-align: center;
+      font-family: var(--font-logo);
+      font-style: italic;
+      font-size: clamp(31px, 3vw, 42px);
+      line-height: 1;
+    }
+
+    @media (max-width: 720px) {
+      .hero-asset {
+        opacity: 0.16 !important;
+        left: 50%;
+        top: 42%;
+        width: min(132vw, 620px);
+        transform: translate(-50%, -50%);
+      }
+      .hero-title {
+        margin-top: 52px;
+        font-size: clamp(42px, 12.8vw, 66px);
+        line-height: 1.08;
+        max-width: 11.5ch;
+      }
+      .section-title { font-size: clamp(31px, 8.4vw, 46px); max-width: 17ch; }
+      #service .service-card {
+        min-height: 338px;
+        padding: 38px 24px 34px;
+      }
+      .service-content { gap: 25px; }
+      #service .service-card h3 {
+        font-size: clamp(34px, 9.4vw, 47px);
+        max-width: 13ch;
+        line-height: 1.12;
+      }
+      #service .service-card p {
+        max-width: 29ch;
+        font-size: 17px;
+        line-height: 1.5;
+      }
+      .answer-card h3 { font-size: clamp(23px, 6.8vw, 34px); }
+      .process-title { font-size: clamp(25px, 7vw, 38px); }
+      .visit-title { font-size: clamp(34px, 9vw, 50px); max-width: 10ch; }
+      .address { font-size: clamp(20px, 5.4vw, 28px); }
+      .asset-strip img { width: min(100%, 560px); }
     }
 
     @media (prefers-reduced-motion: reduce) {
@@ -2032,16 +2386,11 @@
 
   <div class="loader" id="loader" aria-label="Loading Texas Discount Battery">
     <div class="loader-inner">
-      <svg class="loader-logo" viewBox="0 0 1800 896" role="img" aria-label="Texas Discount Battery logo outline">
+      <svg class="loader-logo" viewBox="0 0 1774 887" role="img" aria-label="Texas Discount Battery logo outline">
         <defs>
           <filter id="logoEdge" x="-8%" y="-8%" width="116%" height="116%" color-interpolation-filters="sRGB">
-            <feColorMatrix in="SourceGraphic" result="shape" type="matrix" values="
-              0 0 0 0 1
-              0 0 0 0 1
-              0 0 0 0 1
-              -1 -1 -1 0 2.72" />
-            <feMorphology in="shape" operator="dilate" radius="5" result="outer" />
-            <feMorphology in="shape" operator="erode" radius="1" result="inner" />
+            <feMorphology in="SourceAlpha" operator="dilate" radius="5" result="outer" />
+            <feMorphology in="SourceAlpha" operator="erode" radius="1" result="inner" />
             <feComposite in="outer" in2="inner" operator="out" result="edge" />
             <feFlood flood-color="#c0c8d4" result="silverPaint" />
             <feComposite in="silverPaint" in2="edge" operator="in" />
@@ -2050,18 +2399,18 @@
             <stop offset="0" stop-color="#fff" stop-opacity="1" />
             <stop offset="100%" stop-color="#fff" stop-opacity="0" />
           </linearGradient>
-          <mask id="loaderRevealMask" maskUnits="userSpaceOnUse" x="0" y="0" width="1800" height="896">
-            <rect id="loaderMaskSolid" x="0" y="0" width="0" height="896" fill="#fff"></rect>
-            <rect id="loaderMaskFeather" x="-120" y="0" width="120" height="896" fill="url(#loaderMaskFade)"></rect>
+          <mask id="loaderRevealMask" maskUnits="userSpaceOnUse" x="0" y="0" width="1774" height="887">
+            <rect id="loaderMaskSolid" x="0" y="0" width="0" height="887" fill="#fff"></rect>
+            <rect id="loaderMaskFeather" x="-120" y="0" width="120" height="887" fill="url(#loaderMaskFade)"></rect>
           </mask>
         </defs>
-        <rect width="1800" height="896" rx="22" fill="rgba(192,200,212,0.035)" stroke="rgba(192,200,212,0.18)" />
-        <image class="loader-logo-photo" href="assets/logo.png" x="0" y="0" width="1800" height="896" preserveAspectRatio="xMidYMid meet" />
-        <image class="loader-outline" href="assets/logo.png" x="0" y="0" width="1800" height="896" preserveAspectRatio="xMidYMid meet" filter="url(#logoEdge)" />
+        <rect width="1774" height="887" rx="22" fill="none" stroke="rgba(192,200,212,0.14)" />
+        <image class="loader-logo-photo" href="assets/logo-nav-clean.png" x="0" y="0" width="1774" height="887" preserveAspectRatio="xMidYMid meet" />
+        <image class="loader-outline" href="assets/logo-nav-clean.png" x="0" y="0" width="1774" height="887" preserveAspectRatio="xMidYMid meet" filter="url(#logoEdge)" />
         <g mask="url(#loaderRevealMask)">
-          <image class="loader-reveal-logo" href="assets/logo.png" x="0" y="0" width="1800" height="896" preserveAspectRatio="xMidYMid meet" />
+          <image class="loader-reveal-logo" href="assets/logo-nav-clean.png" x="0" y="0" width="1774" height="887" preserveAspectRatio="xMidYMid meet" />
         </g>
-        <rect id="loaderEdge" class="loader-edge" x="0" y="70" width="5" height="756" rx="2.5" fill="url(#edgeGrad)" />
+        <rect id="loaderEdge" class="loader-edge" x="0" y="28" width="5" height="831" rx="2.5" fill="url(#edgeGrad)" />
         <defs>
           <linearGradient id="edgeGrad" x1="0" y1="0" x2="0" y2="1">
             <stop offset="0" stop-color="#0033a0" stop-opacity="0" />
@@ -2102,7 +2451,7 @@
   </nav>
 
   <header class="hero" id="top">
-    <img class="hero-asset" src="assets/logo-clean.png" alt="" aria-hidden="true" />
+    <img class="hero-asset" src="assets/logo-nav-clean.png" alt="" aria-hidden="true" />
     <div class="hero-system" aria-hidden="true">
       <div class="energy-frame">
         <div class="battery-object">
@@ -2178,7 +2527,7 @@
       <div class="specs-grid">
         <div>
           <div class="section-kicker serif" data-i18n="specKicker">On the bench</div>
-          <div class="big-score display chrome">5.0<small>&#9733;</small></div>
+          <div class="big-score display chrome" aria-label="5.0 star rating"><span class="score-number">5.0</span><small>&#9733;</small></div>
           <div class="fact-sub serif" data-i18n="specSub">Average rating across 800+ real customer reviews</div>
         </div>
         <div>
@@ -2316,97 +2665,145 @@
       </div>
       <div class="map-panel" aria-label="Stylized map to 7423 Airport Boulevard">
         <a class="map-directions" href="https://www.google.com/maps/dir/?api=1&destination=Texas%20Discount%20Battery%20Co.%2C%207423%20Airport%20Blvd%2C%20Houston%2C%20TX%2077061" target="_blank" rel="noreferrer" data-directions-link data-i18n="directionsBtn" data-hover>Get Directions</a>
-        <svg viewBox="0 0 820 820" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Map near Hobby Airport">
+        <svg viewBox="0 0 920 820" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Premium stylized navigation map near Hobby Airport and 7423 Airport Boulevard">
+          <title>Texas Discount Battery navigation board near Hobby Airport</title>
+          <desc>Dimensional red, blue, and gray Houston navigation board highlighting Airport Boulevard, Interstate 45, Hobby Airport, and Texas Discount Battery at 7423 Airport Boulevard.</desc>
           <defs>
-            <linearGradient id="mapBg" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="0" stop-color="#04091a"/>
-              <stop offset="1" stop-color="#0a1226"/>
+            <linearGradient id="mapBoardBg" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0" stop-color="#0a1628"/>
+              <stop offset="0.46" stop-color="#07101c"/>
+              <stop offset="1" stop-color="#05070d"/>
             </linearGradient>
-            <pattern id="mapGrid" width="34" height="34" patternUnits="userSpaceOnUse">
-              <path d="M34 0H0V34" fill="none" stroke="rgba(192,200,212,0.06)" stroke-width="1"/>
-            </pattern>
-            <radialGradient id="pinGlow" cx="50%" cy="44%" r="35%">
-              <stop offset="0" stop-color="rgba(200,21,48,0.24)"/>
-              <stop offset="0.65" stop-color="rgba(200,21,48,0.05)"/>
-              <stop offset="1" stop-color="rgba(200,21,48,0)"/>
+            <radialGradient id="mapCenterGlow" cx="44%" cy="42%" r="54%">
+              <stop offset="0" stop-color="#1e4fbf" stop-opacity="0.24"/>
+              <stop offset="0.54" stop-color="#1e4fbf" stop-opacity="0.07"/>
+              <stop offset="1" stop-color="#1e4fbf" stop-opacity="0"/>
             </radialGradient>
+            <linearGradient id="mapRoutePremium" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0" stop-color="#f4f6fa"/>
+              <stop offset="0.48" stop-color="#c0c8d4"/>
+              <stop offset="1" stop-color="#c81530"/>
+            </linearGradient>
+            <linearGradient id="mapBlueRibbon" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0" stop-color="#245fdf"/>
+              <stop offset="1" stop-color="#0033a0"/>
+            </linearGradient>
+            <linearGradient id="mapRedRibbon" x1="0" y1="0" x2="1" y2="0">
+              <stop offset="0" stop-color="#8a0820"/>
+              <stop offset="0.5" stop-color="#c81530"/>
+              <stop offset="1" stop-color="#f02a4e"/>
+            </linearGradient>
+            <linearGradient id="mapRunway" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0" stop-color="#172b4a"/>
+              <stop offset="1" stop-color="#0a1220"/>
+            </linearGradient>
+            <linearGradient id="mapCard" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0" stop-color="#f4f6fa" stop-opacity="0.14"/>
+              <stop offset="1" stop-color="#06101f" stop-opacity="0.92"/>
+            </linearGradient>
+            <filter id="mapSoftShadow" x="-20%" y="-20%" width="140%" height="150%">
+              <feDropShadow dx="0" dy="26" stdDeviation="20" flood-color="#000000" flood-opacity="0.38"/>
+            </filter>
+            <filter id="mapRedGlow" x="-50%" y="-50%" width="200%" height="200%">
+              <feGaussianBlur stdDeviation="14" result="blur"/>
+              <feMerge>
+                <feMergeNode in="blur"/>
+                <feMergeNode in="SourceGraphic"/>
+              </feMerge>
+            </filter>
+            <pattern id="mapMicroGrid" width="46" height="46" patternUnits="userSpaceOnUse">
+              <path d="M46 0H0V46" fill="none" stroke="#c0c8d4" stroke-opacity="0.055" stroke-width="1"/>
+            </pattern>
+            <marker id="mapArrowHead" viewBox="0 0 12 12" refX="9" refY="6" markerWidth="9" markerHeight="9" orient="auto">
+              <path d="M1 1L11 6L1 11Z" fill="#f4f6fa"/>
+            </marker>
           </defs>
-          <rect width="820" height="820" fill="url(#mapBg)"/>
-          <rect width="820" height="820" fill="url(#mapGrid)"/>
-          <g opacity="0.72">
-            <rect x="50" y="70" width="160" height="118" fill="#0e1a33" stroke="rgba(192,200,212,0.12)"/>
-            <rect x="232" y="58" width="186" height="128" fill="#101d37" stroke="rgba(192,200,212,0.12)"/>
-            <rect x="440" y="76" width="132" height="112" fill="#0e1a33" stroke="rgba(192,200,212,0.12)"/>
-            <rect x="594" y="58" width="174" height="126" fill="#101d37" stroke="rgba(192,200,212,0.12)"/>
-            <rect x="54" y="226" width="170" height="128" fill="#0e1a33" stroke="rgba(192,200,212,0.12)"/>
-            <rect x="604" y="224" width="168" height="132" fill="#101d37" stroke="rgba(192,200,212,0.12)"/>
-            <rect x="58" y="452" width="188" height="164" fill="#0e1a33" stroke="rgba(192,200,212,0.12)"/>
-            <rect x="266" y="450" width="168" height="148" fill="#101d37" stroke="rgba(192,200,212,0.12)"/>
-            <rect x="456" y="448" width="148" height="166" fill="#0e1a33" stroke="rgba(192,200,212,0.12)"/>
-            <rect x="626" y="450" width="158" height="148" fill="#101d37" stroke="rgba(192,200,212,0.12)"/>
+          <rect width="920" height="820" fill="url(#mapBoardBg)"/>
+          <rect width="920" height="820" fill="url(#mapMicroGrid)"/>
+          <rect width="920" height="820" fill="url(#mapCenterGlow)"/>
+          <g opacity="0.42" stroke="#c0c8d4" stroke-opacity="0.15" fill="none">
+            <ellipse cx="432" cy="348" rx="284" ry="162"/>
+            <ellipse cx="432" cy="348" rx="205" ry="116"/>
+            <ellipse cx="432" cy="348" rx="126" ry="72"/>
+            <path d="M432 104V590"/>
+            <path d="M134 348H720"/>
           </g>
-          <g opacity="0.9">
-            <path d="M478 614L820 586V820H454Z" fill="#0f1f3d" stroke="rgba(192,200,212,0.14)"/>
-            <rect x="510" y="670" width="286" height="14" fill="#1a2f4e"/>
-            <rect x="510" y="670" width="286" height="14" fill="none" stroke="rgba(244,246,250,0.52)" stroke-width="0.8" stroke-dasharray="14 10"/>
-            <rect x="550" y="730" width="250" height="12" fill="#1a2f4e" transform="rotate(-8 675 736)"/>
-            <rect x="550" y="730" width="250" height="12" fill="none" stroke="rgba(244,246,250,0.44)" stroke-width="0.8" stroke-dasharray="12 10" transform="rotate(-8 675 736)"/>
-            <text x="622" y="792" font-family="DM Serif Display, Georgia, serif" font-style="italic" font-size="21" fill="#8b96a6">Hobby Airport</text>
+          <g filter="url(#mapSoftShadow)" opacity="0.98">
+            <path d="M86 122L262 66L430 118L252 186Z" fill="#0d1b31" stroke="#c0c8d4" stroke-opacity="0.14"/>
+            <path d="M290 68L506 28L724 112L504 174Z" fill="#101f38" stroke="#c0c8d4" stroke-opacity="0.14"/>
+            <path d="M42 274L252 204L418 260L204 342Z" fill="#0e1a2d" stroke="#c0c8d4" stroke-opacity="0.13"/>
+            <path d="M466 226L702 158L876 244L636 326Z" fill="#0d1b31" stroke="#c0c8d4" stroke-opacity="0.13"/>
+            <path d="M88 488L300 410L514 496L294 590Z" fill="#101f38" stroke="#c0c8d4" stroke-opacity="0.13"/>
+            <path d="M538 504L760 424L906 512L676 616Z" fill="#0e1a2d" stroke="#c0c8d4" stroke-opacity="0.13"/>
           </g>
-          <g stroke="rgba(192,200,212,0.20)" stroke-width="1.3" fill="none">
-            <path d="M0 206H820"/>
-            <path d="M0 430H820"/>
-            <path d="M222 0V820"/>
-            <path d="M442 0V820"/>
-            <path d="M594 0V820"/>
+          <g opacity="0.92" filter="url(#mapSoftShadow)">
+            <path d="M594 590L916 520L916 820L514 820Z" fill="#081424" stroke="#c0c8d4" stroke-opacity="0.16"/>
+            <path d="M646 634L888 580" stroke="url(#mapRunway)" stroke-width="34" stroke-linecap="round"/>
+            <path d="M624 724L878 666" stroke="url(#mapRunway)" stroke-width="26" stroke-linecap="round"/>
+            <path d="M660 633L876 584" stroke="#f4f6fa" stroke-opacity="0.5" stroke-width="1.4" stroke-dasharray="20 18"/>
+            <path d="M640 722L862 671" stroke="#f4f6fa" stroke-opacity="0.42" stroke-width="1.2" stroke-dasharray="16 14"/>
+            <text x="652" y="780" font-family="TDB Logo Display, Graduate, Georgia, serif" font-size="19" font-style="italic" fill="#8b96a6" letter-spacing="2.4">HOBBY AIRPORT</text>
           </g>
-          <g>
-            <path d="M196 0L322 820" stroke="#1e4fbf" stroke-width="15"/>
-            <path d="M196 0L322 820" stroke="rgba(244,246,250,0.58)" stroke-width="1.1" stroke-dasharray="8 14"/>
-            <path d="M0 366L820 324" stroke="#c81530" stroke-width="17"/>
-            <path d="M0 366L820 324" stroke="rgba(244,246,250,0.58)" stroke-width="1.1" stroke-dasharray="8 14"/>
-            <path d="M604 0Q728 202 820 366" stroke="#1f3a78" stroke-width="11" fill="none"/>
-            <path d="M604 0Q728 202 820 366" stroke="rgba(244,246,250,0.45)" stroke-width="1" stroke-dasharray="6 10" fill="none"/>
+          <g fill="none" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M152-42C188 96 212 208 252 352C298 518 324 660 382 880" stroke="#04070d" stroke-width="44"/>
+            <path d="M152-42C188 96 212 208 252 352C298 518 324 660 382 880" stroke="url(#mapBlueRibbon)" stroke-width="30"/>
+            <path d="M152-42C188 96 212 208 252 352C298 518 324 660 382 880" stroke="#f4f6fa" stroke-opacity="0.62" stroke-width="1.6" stroke-dasharray="18 18"/>
+            <path d="M-60 390C142 376 300 360 468 338C622 318 764 302 982 282" stroke="#04070d" stroke-width="50"/>
+            <path d="M-60 390C142 376 300 360 468 338C622 318 764 302 982 282" stroke="url(#mapRedRibbon)" stroke-width="33"/>
+            <path d="M-60 390C142 376 300 360 468 338C622 318 764 302 982 282" stroke="#f4f6fa" stroke-opacity="0.68" stroke-width="1.6" stroke-dasharray="22 18"/>
+            <path d="M662-48C720 88 760 188 840 296" stroke="#04070d" stroke-width="34"/>
+            <path d="M662-48C720 88 760 188 840 296" stroke="#1a2f4e" stroke-width="21"/>
+            <path d="M662-48C720 88 760 188 840 296" stroke="#f4f6fa" stroke-opacity="0.38" stroke-width="1.2" stroke-dasharray="14 15"/>
           </g>
-          <g transform="translate(710 124)">
-            <rect x="-23" y="-17" width="46" height="34" rx="5" fill="#c81530" stroke="#f4f6fa" stroke-width="1.5"/>
-            <text x="0" y="6" font-family="Inter, sans-serif" font-size="14" font-weight="800" fill="#f4f6fa" text-anchor="middle">45</text>
+          <g font-family="Manrope, Inter, system-ui, sans-serif" font-weight="900" letter-spacing="1.5" text-transform="uppercase">
+            <rect x="54" y="328" width="168" height="34" rx="17" fill="#06101f" fill-opacity="0.84" stroke="#c0c8d4" stroke-opacity="0.2"/>
+            <text x="75" y="350" font-size="14" fill="#f4f6fa">Airport Blvd</text>
+            <rect x="148" y="82" width="122" height="32" rx="16" fill="#06101f" fill-opacity="0.72" stroke="#c0c8d4" stroke-opacity="0.18" transform="rotate(76 209 98)"/>
+            <text x="178" y="102" font-size="12" fill="#c0c8d4" transform="rotate(76 178 102)">I-45</text>
+            <text x="648" y="142" font-size="13" fill="#8b96a6" transform="rotate(47 648 142)">Telephone Rd</text>
+            <text x="88" y="230" font-size="12" fill="#8b96a6">Sims Bayou</text>
+            <text x="520" y="202" font-size="12" fill="#8b96a6">Glenshire</text>
+            <text x="92" y="624" font-size="12" fill="#8b96a6">Park Place</text>
+            <text x="510" y="624" font-size="12" fill="#8b96a6">Garden Villas</text>
           </g>
-          <g font-family="DM Serif Display, Georgia, serif" font-style="italic" fill="#c0c8d4">
-            <text x="48" y="350" font-size="23">Airport Blvd</text>
-            <text x="160" y="120" font-size="20" transform="rotate(82 160 120)">Telephone Rd</text>
-            <text x="82" y="196" font-size="14" fill="#8b96a6">Sims Bayou</text>
-            <text x="504" y="196" font-size="14" fill="#8b96a6">Glenshire</text>
-            <text x="82" y="420" font-size="14" fill="#8b96a6">Park Place</text>
-            <text x="494" y="420" font-size="14" fill="#8b96a6">Garden Villas</text>
+          <g transform="translate(742 116)" filter="url(#mapSoftShadow)">
+            <rect x="-33" y="-22" width="66" height="44" rx="9" fill="#c81530" stroke="#f4f6fa" stroke-width="1.8"/>
+            <text x="0" y="8" font-family="Manrope, Inter, sans-serif" font-size="17" font-weight="900" fill="#f4f6fa" text-anchor="middle">45</text>
           </g>
-          <rect width="820" height="820" fill="url(#pinGlow)"/>
-          <g transform="translate(410 346)">
-            <circle r="82" fill="rgba(200,21,48,0.10)"/>
-            <circle r="52" fill="rgba(200,21,48,0.20)"/>
-            <circle r="29" fill="#c81530" stroke="#f4f6fa" stroke-width="2.8"/>
-            <path d="M0 0L-9-11H9Z" fill="#f4f6fa" transform="translate(0 -1)"/>
-            <circle r="6" fill="#f4f6fa" transform="translate(0 -4)"/>
-            <g transform="translate(-108 -118)">
-              <rect width="216" height="48" rx="7" fill="#06101f" stroke="rgba(192,200,212,0.38)"/>
-              <rect x="7" y="7" width="16" height="34" fill="#0033a0"/>
-              <polygon points="15,13 17,19 23,19 18,23 20,30 15,26 10,30 12,23 7,19 13,19" fill="#f4f6fa"/>
-              <text id="mapHere" x="34" y="22" font-family="DM Serif Display, Georgia, serif" font-style="italic" font-size="15" fill="#f4f6fa">You Are Here</text>
-              <text x="34" y="38" font-family="Inter, sans-serif" font-size="11" fill="#8b96a6">7423 Airport Blvd</text>
-            </g>
+          <path d="M706 658C650 598 606 548 548 506C482 458 450 402 430 354" fill="none" stroke="#04070d" stroke-width="22" stroke-linecap="round"/>
+          <path d="M706 658C650 598 606 548 548 506C482 458 450 402 430 354" fill="none" stroke="url(#mapRoutePremium)" stroke-width="9" stroke-linecap="round" stroke-dasharray="3 20" marker-end="url(#mapArrowHead)" filter="url(#mapRedGlow)"/>
+          <g transform="translate(430 354)" filter="url(#mapSoftShadow)">
+            <circle r="118" fill="#c81530" opacity="0.08"/>
+            <circle r="86" fill="none" stroke="#c81530" stroke-opacity="0.34" stroke-width="2"/>
+            <circle r="58" fill="none" stroke="#f4f6fa" stroke-opacity="0.16" stroke-width="1.5" stroke-dasharray="12 10"/>
+            <path d="M0-76C-39-76-71-45-71-7C-71 51 0 110 0 110S71 51 71-7C71-45 39-76 0-76Z" fill="#c81530" stroke="#f4f6fa" stroke-width="4"/>
+            <circle r="27" fill="#06101f" stroke="#f4f6fa" stroke-width="3"/>
+            <path d="M0-16L6-5H18L8 3L12 16L0 9L-12 16L-8 3L-18-5H-6Z" fill="#f4f6fa"/>
           </g>
-          <g transform="translate(760 62)">
-            <circle r="29" fill="rgba(6,16,31,0.88)" stroke="rgba(192,200,212,0.32)"/>
-            <path d="M0-21L6 0L0 21L-6 0Z" fill="#c81530"/>
-            <path d="M0-21L6 0H0Z" fill="#f4f6fa"/>
-            <text y="-34" font-family="DM Serif Display, Georgia, serif" font-style="italic" font-size="12" fill="#c0c8d4" text-anchor="middle">N</text>
+          <g transform="translate(154 174)" filter="url(#mapSoftShadow)">
+            <path d="M0 0H364L400 38V132H36L0 94Z" fill="url(#mapCard)" stroke="#c0c8d4" stroke-opacity="0.28"/>
+            <path d="M0 0H364L400 38" fill="none" stroke="#f4f6fa" stroke-opacity="0.18"/>
+            <rect x="22" y="24" width="126" height="70" rx="8" fill="#f4f6fa"/>
+            <image href="assets/logo-nav-clean.png" x="28" y="31" width="114" height="56" preserveAspectRatio="xMidYMid meet"/>
+            <text id="mapHere" x="172" y="42" font-family="TDB Logo Display, Graduate, Georgia, serif" font-size="23" font-style="italic" fill="#f4f6fa">You Are Here</text>
+            <text x="172" y="70" font-family="Manrope, Inter, system-ui, sans-serif" font-size="13" font-weight="900" fill="#c0c8d4">7423 Airport Blvd</text>
+            <text x="172" y="94" font-family="Manrope, Inter, system-ui, sans-serif" font-size="11" font-weight="800" fill="#8b96a6" letter-spacing="1.3">HOUSTON / HOBBY CORRIDOR</text>
+            <path d="M334 92h38" stroke="#c81530" stroke-width="4" stroke-linecap="round"/>
+            <path d="M353 73v38" stroke="#c81530" stroke-width="4" stroke-linecap="round"/>
           </g>
-          <g transform="translate(42 778)">
+          <g transform="translate(794 70)">
+            <circle r="30" fill="#06101f" stroke="#c0c8d4" stroke-opacity="0.32"/>
+            <path d="M0-22L7 0L0 22L-7 0Z" fill="#c81530"/>
+            <path d="M0-22L7 0H0Z" fill="#f4f6fa"/>
+            <text y="-36" font-family="TDB Logo Display, Graduate, Georgia, serif" font-style="italic" font-size="12" fill="#c0c8d4" text-anchor="middle">N</text>
+          </g>
+          <g transform="translate(46 770)" opacity="0.84">
+            <rect x="-16" y="-24" width="176" height="50" rx="25" fill="#06101f" fill-opacity="0.62" stroke="#c0c8d4" stroke-opacity="0.18"/>
             <line x1="0" y1="0" x2="126" y2="0" stroke="#c0c8d4" stroke-width="2"/>
             <line x1="0" y1="-5" x2="0" y2="5" stroke="#c0c8d4" stroke-width="2"/>
             <line x1="63" y1="-3" x2="63" y2="3" stroke="#c0c8d4" stroke-width="2"/>
             <line x1="126" y1="-5" x2="126" y2="5" stroke="#c0c8d4" stroke-width="2"/>
-            <text x="0" y="24" font-family="DM Serif Display, Georgia, serif" font-style="italic" font-size="13" fill="#8b96a6">1/4 mile</text>
+            <text x="0" y="21" font-family="TDB Logo Display, Graduate, Georgia, serif" font-style="italic" font-size="12" fill="#8b96a6">1/4 mile</text>
           </g>
         </svg>
       </div>
@@ -2425,8 +2822,44 @@
   </footer>
 
   <script>
+    const SUPPORTED_LANGS = ["en", "es"];
+
+    function normalizeLang(value) {
+      const code = String(value || "").trim().toLowerCase();
+      if (code === "es" || code.startsWith("es-")) return "es";
+      if (code === "en" || code.startsWith("en-")) return "en";
+      return "";
+    }
+
+    function savedLang() {
+      try {
+        const lang = normalizeLang(localStorage.getItem("tdb_lang"));
+        return SUPPORTED_LANGS.includes(lang) ? lang : "";
+      } catch (error) {
+        return "";
+      }
+    }
+
+    function deviceLang() {
+      const languages = [];
+      if (Array.isArray(navigator.languages)) languages.push(...navigator.languages);
+      if (navigator.language) languages.push(navigator.language);
+      if (navigator.userLanguage) languages.push(navigator.userLanguage);
+      for (const lang of languages) {
+        const normalized = normalizeLang(lang);
+        if (normalized) return normalized;
+      }
+      return "en";
+    }
+
+    function saveLang(lang) {
+      try {
+        localStorage.setItem("tdb_lang", lang);
+      } catch (error) {}
+    }
+
     const state = {
-      lang: localStorage.getItem("tdb_lang") || "en",
+      lang: savedLang() || deviceLang(),
       reviewsPaused: false
     };
 
@@ -2749,8 +3182,7 @@
     function renderServices(dict) {
       $("#servicesGrid").innerHTML = dict.services.map(([title, copy]) => `
         <a href="#visit" class="service-card" data-hover>
-          <div class="card-kicker serif">${title}</div>
-          <div>
+          <div class="service-content">
             <h3 class="display">${title}</h3>
             <p>${copy}</p>
             <div class="service-arrow">&rarr;</div>
@@ -2989,17 +3421,18 @@
         return;
       }
       const duration = 1850;
+      const logoWidth = 1774;
       const featherWidth = 120;
       const ease = (x) => 1 - Math.pow(1 - x, 3);
       let start = null;
       const draw = (progress) => {
         const eased = ease(progress);
-        const sweep = 1800 * eased;
-        const solidWidth = Math.max(0, Math.min(1800, sweep - featherWidth * 0.5));
-        const featherX = Math.max(-featherWidth, Math.min(1800, sweep - featherWidth * 0.5));
+        const sweep = logoWidth * eased;
+        const solidWidth = Math.max(0, Math.min(logoWidth, sweep - featherWidth * 0.5));
+        const featherX = Math.max(-featherWidth, Math.min(logoWidth, sweep - featherWidth * 0.5));
         solid.setAttribute("width", solidWidth.toFixed(2));
         feather.setAttribute("x", featherX.toFixed(2));
-        edge.setAttribute("x", Math.max(0, Math.min(1795, sweep - 2)).toFixed(2));
+        edge.setAttribute("x", Math.max(0, Math.min(logoWidth - 5, sweep - 2)).toFixed(2));
         edge.style.opacity = progress < 0.985 ? "1" : String(Math.max(0, (1 - progress) / 0.015));
         fill.style.transform = `scaleX(${eased})`;
       };
@@ -3070,7 +3503,7 @@
     $$(".lang-toggle button").forEach((button) => {
       button.addEventListener("click", () => {
         state.lang = button.dataset.lang;
-        localStorage.setItem("tdb_lang", state.lang);
+        saveLang(state.lang);
         render();
       });
     });
