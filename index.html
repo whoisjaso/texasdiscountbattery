@@ -2450,7 +2450,7 @@
     .brand-mark {
       width: 218px !important;
       height: 58px !important;
-      background-image: url("assets/logo-nav-transparent.png") !important;
+      background-image: url("assets/logo-nav-header-clean.png") !important;
       background-size: contain !important;
       background-position: left center !important;
       background-repeat: no-repeat !important;
@@ -2912,7 +2912,7 @@
       box-shadow: 0 16px 54px rgba(0,0,0,0.34) !important;
     }
     .brand-mark {
-      background-image: url("assets/logo-nav-transparent.png") !important;
+      background-image: url("assets/logo-nav-header-clean.png") !important;
       filter: saturate(1.05) drop-shadow(0 1px 0 rgba(244,246,250,0.16)) drop-shadow(0 10px 24px rgba(0,0,0,0.24));
     }
     .nav-links { color: rgba(244,246,250,0.86) !important; }
@@ -3007,6 +3007,91 @@
       background: rgba(8,16,28,0.84) !important;
       border-top-color: rgba(192,200,212,0.14) !important;
       border-bottom-color: rgba(192,200,212,0.14) !important;
+    }
+
+    /* Alignment and header logo cleanup pass. */
+    .nav {
+      left: 50% !important;
+      right: auto !important;
+      width: min(calc(100vw - 48px), 1440px) !important;
+      transform: translateX(-50%) !important;
+      grid-template-columns: 226px minmax(0, 1fr) 268px !important;
+    }
+    .nav.scrolled {
+      transform: translateX(-50%) scale(0.992) !important;
+    }
+    .brand-mark {
+      width: 190px !important;
+      height: 54px !important;
+      background-image: url("assets/logo-nav-header-clean.png") !important;
+      background-size: contain !important;
+      background-position: left center !important;
+      filter: none !important;
+      image-rendering: auto;
+    }
+    .section-head {
+      justify-items: center !important;
+      text-align: center !important;
+    }
+    .section-title,
+    .section-lede {
+      margin-left: auto !important;
+      margin-right: auto !important;
+      text-align: center !important;
+    }
+    .section-title span[style*="display:block"] {
+      text-align: center !important;
+    }
+    .visit-info {
+      text-align: center !important;
+    }
+    .visit-info .section-kicker,
+    .visit-title,
+    .address,
+    .address-sub,
+    .visit-actions {
+      margin-left: auto !important;
+      margin-right: auto !important;
+      text-align: center !important;
+      justify-content: center !important;
+    }
+    .asset-copy {
+      text-align: center !important;
+    }
+    .asset-copy h2,
+    .asset-copy p {
+      margin-left: auto !important;
+      margin-right: auto !important;
+      text-align: center !important;
+    }
+
+    @media (max-width: 980px) {
+      .nav {
+        grid-template-columns: minmax(0, 1fr) auto !important;
+        width: calc(100vw - 24px) !important;
+      }
+    }
+
+    @media (max-width: 720px) {
+      .nav {
+        left: 50% !important;
+        right: auto !important;
+        width: calc(100vw - 24px) !important;
+        transform: translateX(-50%) !important;
+      }
+      .nav.scrolled {
+        transform: translateX(-50%) scale(0.992) !important;
+      }
+      .brand-mark {
+        width: 170px !important;
+        height: 48px !important;
+      }
+      .section-head,
+      .section-title,
+      .section-lede {
+        text-align: center !important;
+        justify-items: center !important;
+      }
     }
   </style>
 </head>
