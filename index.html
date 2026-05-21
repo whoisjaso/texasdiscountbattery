@@ -3835,6 +3835,163 @@
         display: none !important;
       }
     }
+
+    /* Final floating-object pass: keep the battery out of a visual box. */
+    .lead-offer {
+      width: min(760px, calc(100% - 36px)) !important;
+      min-height: auto !important;
+      padding: 0 !important;
+      gap: clamp(18px, 3vw, 34px) !important;
+      grid-template-columns: minmax(310px, 1.04fr) minmax(218px, 0.58fr) !important;
+      border: 0 !important;
+      background: transparent !important;
+      box-shadow: none !important;
+      backdrop-filter: none !important;
+      transform: none !important;
+      isolation: isolate;
+    }
+
+    @media (pointer: fine) {
+      .lead-offer:hover {
+        transform: none !important;
+        border-color: transparent !important;
+        box-shadow: none !important;
+      }
+    }
+
+    .offer-stage {
+      height: clamp(214px, 21vw, 272px) !important;
+      border: 0 !important;
+      border-radius: 0;
+    }
+
+    .offer-stage::before {
+      inset: 52% -3% -7% !important;
+      background:
+        radial-gradient(ellipse at 36% 55%, rgba(47,103,223,0.5), transparent 50%),
+        radial-gradient(ellipse at 68% 52%, rgba(239,36,72,0.38), transparent 48%) !important;
+      filter: blur(34px) !important;
+      opacity: 0.86;
+    }
+
+    .offer-stage::after {
+      inset: 24px -4px 2px;
+      background:
+        radial-gradient(ellipse at 50% 58%, rgba(244,246,250,0.09), transparent 34%),
+        radial-gradient(ellipse at 52% 78%, rgba(47,103,223,0.3), transparent 62%);
+      filter: blur(18px);
+      opacity: 0.64;
+    }
+
+    .hero-battery-object {
+      width: min(112%, 450px);
+      height: min(260px, calc(100% + 16px));
+      filter:
+        drop-shadow(0 34px 40px rgba(0,0,0,0.42))
+        drop-shadow(-10px 0 32px rgba(47,103,223,0.28))
+        drop-shadow(10px 0 26px rgba(239,36,72,0.2));
+    }
+
+    .lead-price {
+      position: relative;
+      align-self: center;
+      padding-left: clamp(18px, 2.6vw, 30px) !important;
+    }
+
+    .lead-price::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 10px;
+      bottom: 12px;
+      width: 1px;
+      background: linear-gradient(180deg, transparent, rgba(192,200,212,0.36), rgba(239,36,72,0.38), transparent);
+    }
+
+    .lead-price-label {
+      font-size: 0.74rem;
+      color: rgba(220,225,234,0.64);
+    }
+
+    .lead-price-value {
+      font-size: clamp(5.15rem, 7.2vw, 6.3rem) !important;
+      line-height: 0.96 !important;
+      text-shadow:
+        0 26px 80px rgba(0,0,0,0.42),
+        0 0 34px rgba(239,36,72,0.22);
+    }
+
+    .lead-price-copy {
+      max-width: 18ch;
+      color: rgba(244,246,250,0.78);
+      line-height: 1.18;
+    }
+
+    @media (pointer: fine) {
+      .offer-stage:hover .hero-battery-object,
+      .offer-stage:focus-visible .hero-battery-object {
+        --battery-lift: -16px;
+        --battery-scale: 1.055;
+        filter:
+          drop-shadow(0 42px 48px rgba(0,0,0,0.5))
+          drop-shadow(-16px 0 42px rgba(47,103,223,0.5))
+          drop-shadow(16px 0 42px rgba(239,36,72,0.42));
+      }
+    }
+
+    @media (max-width: 720px) {
+      .lead-offer {
+        width: min(100%, 390px) !important;
+        grid-template-columns: 1fr !important;
+        gap: 4px !important;
+        margin-bottom: 18px !important;
+      }
+
+      .offer-stage {
+        height: clamp(196px, 52vw, 236px) !important;
+      }
+
+      .offer-stage::before {
+        inset: 54% 5% -8% !important;
+        filter: blur(30px) !important;
+      }
+
+      .offer-stage::after {
+        inset: 20px 10px 0;
+      }
+
+      .hero-battery-object {
+        width: min(116%, 356px);
+        height: min(220px, calc(100% + 12px));
+        --battery-scale: 1.035;
+      }
+
+      .lead-price {
+        padding-left: 0 !important;
+        justify-items: center;
+        text-align: center;
+      }
+
+      .lead-price::before {
+        content: none;
+      }
+
+      .lead-price-label {
+        font-size: 0.72rem;
+      }
+
+      .lead-price-value {
+        font-size: clamp(4.7rem, 20vw, 5.6rem) !important;
+      }
+
+      .lead-price-copy {
+        max-width: 23ch;
+      }
+
+      .hero-copy {
+        display: none !important;
+      }
+    }
   </style>
 </head>
 <body>
