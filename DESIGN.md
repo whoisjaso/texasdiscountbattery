@@ -26,6 +26,8 @@ The `$65` battery option should be visible early without implying every battery 
 - Center section headings and major offer language.
 - Do not use oversized type inside constrained cards.
 - Make mobile controls large, direct, and thumb reachable.
+- Hero battery visual should be a playful interactive 3D model, not a flat realistic product photo.
+- Mobile action dock should use strong dark surfaces and shaped controls; avoid cheap-looking button gradients.
 
 ## Copy Rules
 
@@ -40,4 +42,5 @@ The `$65` battery option should be visible early without implying every battery 
 - Manual scrolling stays native.
 - Anchor navigation may animate smoothly.
 - Reviews auto-scroll continuously and pause on hover or focus.
+- The hero battery model may subtly rotate and respond to pointer movement without blocking native vertical scrolling.
 - Motion must respect `prefers-reduced-motion`.
