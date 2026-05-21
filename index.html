@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
   <meta name="theme-color" content="#06101f" />
   <title>Texas Discount Battery Co. | Car Batteries in Houston, TX</title>
-  <meta name="description" content="Texas Discount Battery Co. at 7423 Airport Blvd in Houston sells new and refurbished batteries with fast testing, free installation, alternator checks, and 5-star local service near Hobby Airport." />
+  <meta name="description" content="Texas Discount Battery Co. at 7423 Airport Blvd in Houston offers battery options from $65, fast testing, free installation with purchase, alternator checks, and 5-star local service near Hobby Airport." />
   <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
   <meta name="googlebot" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
   <meta name="geo.region" content="US-TX" />
@@ -18,7 +18,7 @@
   <meta property="og:type" content="business.business" />
   <meta property="og:site_name" content="Texas Discount Battery Co." />
   <meta property="og:title" content="Texas Discount Battery Co. | Houston Battery Shop" />
-  <meta property="og:description" content="New and refurbished batteries, free installation, battery testing, and alternator checks at 7423 Airport Blvd in Houston, TX." />
+  <meta property="og:description" content="Battery options from $65, free installation with purchase, battery testing, and alternator checks at 7423 Airport Blvd in Houston, TX." />
   <meta property="og:url" content="https://texasdiscountbattery.vercel.app/" />
   <meta property="og:image" content="https://texasdiscountbattery.vercel.app/assets/logo-clean.png" />
   <meta property="og:image:width" content="1536" />
@@ -28,7 +28,7 @@
   <meta property="og:locale:alternate" content="es_US" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Texas Discount Battery Co. | Car Batteries in Houston" />
-  <meta name="twitter:description" content="Fast new and refurbished battery service near Hobby Airport with free install, testing, and alternator checks." />
+  <meta name="twitter:description" content="Fast battery options from $65 near Hobby Airport with free install, testing, and alternator checks." />
   <meta name="twitter:image" content="https://texasdiscountbattery.vercel.app/assets/logo-clean.png" />
   <script type="application/ld+json">
   {
@@ -42,7 +42,7 @@
         "url": "https://texasdiscountbattery.vercel.app/",
         "logo": "https://texasdiscountbattery.vercel.app/assets/logo-nav-clean.png",
         "image": "https://texasdiscountbattery.vercel.app/assets/logo-clean.png",
-        "description": "Houston battery shop near Hobby Airport offering new batteries, used and refurbished batteries, free battery installation with purchase, battery testing, and alternator checks.",
+        "description": "Houston battery shop near Hobby Airport offering battery options from $65, new batteries, used and refurbished batteries, free battery installation with purchase, battery testing, and alternator checks.",
         "telephone": "+1-713-485-6592",
         "email": "texasdiscountbattery@gmail.com",
         "contactPoint": {
@@ -102,6 +102,7 @@
           "@type": "OfferCatalog",
           "name": "Battery services in Houston",
           "itemListElement": [
+            { "@type": "Offer", "name": "Battery options from $65", "price": "65", "priceCurrency": "USD", "itemOffered": { "@type": "Product", "name": "Automotive battery options" } },
             { "@type": "Offer", "name": "New car batteries", "itemOffered": { "@type": "Service", "name": "New automotive battery sales" } },
             { "@type": "Offer", "name": "Used and refurbished batteries", "itemOffered": { "@type": "Service", "name": "Refurbished battery sales" } },
             { "@type": "Offer", "name": "Free battery installation", "itemOffered": { "@type": "Service", "name": "Battery installation with purchase" } },
@@ -122,13 +123,15 @@
         "@id": "https://texasdiscountbattery.vercel.app/#webpage",
         "url": "https://texasdiscountbattery.vercel.app/",
         "name": "Texas Discount Battery Co. | Car Batteries in Houston, TX",
-        "description": "Local Houston battery shop near Hobby Airport with new and refurbished batteries, fast installs, battery testing, alternator checks, and trusted 5-star service.",
+        "description": "Local Houston battery shop near Hobby Airport with battery options from $65, fast installs, battery testing, alternator checks, and trusted 5-star service.",
         "isPartOf": { "@id": "https://texasdiscountbattery.vercel.app/#website" },
         "about": { "@id": "https://texasdiscountbattery.vercel.app/#business" },
         "mainEntity": { "@id": "https://texasdiscountbattery.vercel.app/#business" },
         "primaryImageOfPage": "https://texasdiscountbattery.vercel.app/assets/logo-clean.png",
         "keywords": [
           "car battery Houston",
+          "$65 car battery Houston",
+          "cheap car battery Houston",
           "battery place near me",
           "battery shop near Hobby Airport",
           "used car battery Houston",
@@ -3093,6 +3096,413 @@
         justify-items: center !important;
       }
     }
+
+    /* Lead-generation brand revamp pass: dark premium, mobile-first, factual offer. */
+    :root {
+      --tdb-bg: #050a12;
+      --tdb-panel: #081424;
+      --tdb-panel-2: #0d1b31;
+      --tdb-line: rgba(192,200,212,0.18);
+      --tdb-line-strong: rgba(244,246,250,0.28);
+      --tdb-text: #f4f6fa;
+      --tdb-muted: rgba(220,225,234,0.74);
+      --tdb-red: #ef2448;
+      --tdb-blue: #2f67df;
+      --tdb-silver: #c0c8d4;
+      --tdb-shadow: 0 30px 90px rgba(0,0,0,0.36);
+    }
+
+    html,
+    body {
+      overflow-x: clip !important;
+    }
+
+    .hero {
+      min-height: 900px !important;
+      gap: 0 !important;
+    }
+
+    .hero-title {
+      margin-bottom: 18px !important;
+      font-size: clamp(6.25rem, 8.2vw, 8.4rem) !important;
+    }
+
+    .lead-offer {
+      width: min(650px, calc(100% - 36px));
+      margin: 0 auto 20px;
+      padding: 12px 14px;
+      display: grid;
+      grid-template-columns: 178px minmax(0, 1fr);
+      align-items: center;
+      gap: 16px;
+      border: 1px solid var(--tdb-line);
+      border-radius: 8px;
+      background:
+        linear-gradient(135deg, rgba(47,103,223,0.18), transparent 40%),
+        linear-gradient(225deg, rgba(239,36,72,0.16), transparent 42%),
+        linear-gradient(180deg, rgba(13,27,49,0.9), rgba(5,10,18,0.88));
+      box-shadow: var(--tdb-shadow);
+      backdrop-filter: blur(18px);
+      transform-style: preserve-3d;
+      transition: transform 0.5s var(--ease-out), border-color 0.5s var(--ease-out), box-shadow 0.5s var(--ease-out);
+    }
+
+    @media (pointer: fine) {
+      .lead-offer:hover {
+        transform: translateY(-3px) rotateX(1deg);
+        border-color: var(--tdb-line-strong);
+        box-shadow: 0 38px 110px rgba(0,0,0,0.42);
+      }
+    }
+
+    .offer-battery {
+      position: relative;
+      height: 94px;
+      perspective: 760px;
+      transform: translateZ(0);
+    }
+
+    .battery-post {
+      position: absolute;
+      top: 8px;
+      width: 34px;
+      height: 12px;
+      border: 1px solid rgba(244,246,250,0.22);
+      border-bottom: 0;
+      border-radius: 5px 5px 0 0;
+      background: linear-gradient(180deg, rgba(192,200,212,0.56), rgba(84,96,116,0.72));
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.24);
+    }
+
+    .battery-post.post-left { left: 38px; }
+    .battery-post.post-right { right: 34px; }
+
+    .battery-body {
+      position: absolute;
+      inset: 20px 10px 8px;
+      display: grid;
+      grid-template-columns: 54px 1fr;
+      align-items: center;
+      gap: 12px;
+      padding: 12px 14px;
+      border: 1px solid rgba(244,246,250,0.18);
+      border-radius: 8px;
+      background:
+        linear-gradient(90deg, rgba(239,36,72,0.78) 0 24%, rgba(47,103,223,0.82) 24% 62%, rgba(192,200,212,0.26) 62% 100%),
+        linear-gradient(180deg, rgba(255,255,255,0.12), rgba(0,0,0,0.22));
+      box-shadow:
+        inset 0 1px 0 rgba(255,255,255,0.2),
+        inset 0 -18px 36px rgba(0,0,0,0.24),
+        0 18px 34px rgba(0,0,0,0.36);
+      transform: rotateX(58deg) rotateZ(-6deg) translateY(4px);
+      transform-origin: center bottom;
+    }
+
+    .battery-brand {
+      color: var(--tdb-text);
+      font-family: var(--font-display-premium) !important;
+      font-size: 1.72rem;
+      line-height: 0.9;
+      text-shadow: 0 8px 24px rgba(0,0,0,0.32);
+    }
+
+    .battery-bars {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 5px;
+    }
+
+    .battery-bars i {
+      display: block;
+      height: 30px;
+      border-radius: 4px;
+      background: rgba(244,246,250,0.82);
+      box-shadow: inset 0 -10px 18px rgba(47,103,223,0.18);
+    }
+
+    .lead-price {
+      min-width: 0;
+      display: grid;
+      gap: 3px;
+      text-align: left;
+    }
+
+    .lead-price-label,
+    .lead-price-copy {
+      color: var(--tdb-muted);
+      font-size: 0.78rem;
+      font-weight: 900;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .lead-price-value {
+      color: var(--tdb-text);
+      font-family: var(--font-display-premium) !important;
+      font-size: clamp(4.2rem, 7vw, 5.9rem);
+      line-height: 0.82;
+      text-transform: uppercase;
+      text-shadow: 0 22px 70px rgba(239,36,72,0.3);
+    }
+
+    .lead-price-copy {
+      color: var(--tdb-silver);
+      letter-spacing: 0;
+      text-transform: none;
+      font-weight: 800;
+      font-size: 0.95rem;
+    }
+
+    .hero-copy {
+      margin-top: 0 !important;
+    }
+
+    .hero-address-link {
+      padding: 0 !important;
+      margin-top: 14px !important;
+      border: 0 !important;
+      border-radius: 0 !important;
+      background: transparent !important;
+      color: rgba(220,225,234,0.78) !important;
+      text-decoration: underline;
+      text-decoration-color: rgba(192,200,212,0.34);
+      text-underline-offset: 5px;
+    }
+
+    .hero-address-link:hover {
+      color: var(--tdb-text) !important;
+      text-decoration-color: var(--tdb-red);
+    }
+
+    .hero-foot {
+      margin-top: 36px !important;
+      border-color: rgba(192,200,212,0.18) !important;
+      background: rgba(8,20,36,0.7) !important;
+    }
+
+    .hero-foot > div {
+      background:
+        linear-gradient(180deg, rgba(13,27,49,0.88), rgba(5,10,18,0.74)) !important;
+    }
+
+    .fact-label,
+    .section-kicker,
+    .answer-label,
+    .portrait-note {
+      letter-spacing: 0.06em !important;
+      text-transform: uppercase;
+    }
+
+    #service .section-title {
+      max-width: 10ch !important;
+    }
+
+    .services-grid {
+      gap: 14px !important;
+    }
+
+    #service .service-card {
+      min-height: 300px !important;
+      padding: 26px 24px 22px !important;
+      background:
+        linear-gradient(145deg, rgba(16,31,54,0.94), rgba(6,16,31,0.96)) !important;
+    }
+
+    .service-content {
+      grid-template-rows: auto auto 48px !important;
+      place-items: center !important;
+      justify-items: center !important;
+      text-align: center !important;
+      gap: 16px !important;
+    }
+
+    #service .service-card h3 {
+      max-width: 100% !important;
+      min-height: 2.2em !important;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: clamp(2.25rem, 2.65vw, 3rem) !important;
+      line-height: 0.92 !important;
+      text-align: center !important;
+      text-wrap: balance;
+      overflow-wrap: anywhere !important;
+    }
+
+    #service .service-card p {
+      max-width: 30ch !important;
+      align-self: auto !important;
+      text-align: center !important;
+      font-size: 0.98rem !important;
+      line-height: 1.55 !important;
+    }
+
+    #service .service-arrow {
+      justify-self: center !important;
+      margin-top: 0 !important;
+    }
+
+    .mobile-action-bar {
+      display: none;
+    }
+
+    @media (max-width: 1180px) {
+      .hero-title {
+        font-size: clamp(5.7rem, 9vw, 7rem) !important;
+      }
+      .lead-offer {
+        width: min(610px, calc(100% - 32px));
+      }
+    }
+
+    @media (max-width: 720px) {
+      body {
+        padding-bottom: calc(84px + env(safe-area-inset-bottom)) !important;
+      }
+      .hero {
+        min-height: 100svh !important;
+        padding-top: 112px !important;
+        padding-bottom: 34px !important;
+      }
+      .hero-title {
+        max-width: 7.7ch !important;
+        margin-bottom: 14px !important;
+        font-size: clamp(3.65rem, 17vw, 4.35rem) !important;
+      }
+      .lead-offer {
+        width: min(100%, 372px);
+        grid-template-columns: 122px minmax(0, 1fr);
+        gap: 12px;
+        margin-bottom: 18px;
+        padding: 10px;
+      }
+      .offer-battery {
+        height: 78px;
+      }
+      .battery-post {
+        top: 7px;
+        width: 25px;
+        height: 10px;
+      }
+      .battery-post.post-left { left: 27px; }
+      .battery-post.post-right { right: 24px; }
+      .battery-body {
+        inset: 17px 6px 7px;
+        grid-template-columns: 38px 1fr;
+        gap: 8px;
+        padding: 9px;
+      }
+      .battery-brand {
+        font-size: 1.2rem;
+      }
+      .battery-bars {
+        gap: 3px;
+      }
+      .battery-bars i {
+        height: 23px;
+      }
+      .lead-price-value {
+        font-size: clamp(3.45rem, 18vw, 4.25rem);
+      }
+      .lead-price-label {
+        font-size: 0.7rem;
+      }
+      .lead-price-copy {
+        font-size: 0.82rem;
+      }
+      .hero-copy {
+        max-width: 35ch !important;
+      }
+      .hero-actions {
+        display: none !important;
+      }
+      .hero-address-link {
+        max-width: 31ch;
+        margin-top: 20px !important;
+        line-height: 1.4 !important;
+      }
+      .hero-foot {
+        display: none !important;
+      }
+      #service .service-card h3 {
+        min-height: 0 !important;
+        font-size: clamp(2.5rem, 12vw, 3.1rem) !important;
+      }
+      #service .service-card p {
+        max-width: 31ch !important;
+      }
+      .mobile-action-bar {
+        position: fixed;
+        left: 12px;
+        right: 12px;
+        bottom: calc(10px + env(safe-area-inset-bottom));
+        z-index: 80;
+        display: grid;
+        grid-template-columns: 1fr 0.9fr 1fr;
+        gap: 8px;
+        padding: 8px;
+        border: 1px solid rgba(192,200,212,0.22);
+        border-radius: 8px;
+        background:
+          linear-gradient(180deg, rgba(13,27,49,0.96), rgba(5,10,18,0.94));
+        box-shadow: 0 18px 54px rgba(0,0,0,0.44);
+        backdrop-filter: blur(18px);
+      }
+      .mobile-action-bar a {
+        min-width: 0;
+        min-height: 46px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        border: 1px solid rgba(192,200,212,0.16);
+        border-radius: 7px;
+        color: var(--tdb-text);
+        background: rgba(244,246,250,0.055);
+        font-size: 0.85rem;
+        font-weight: 900;
+        text-decoration: none;
+        white-space: nowrap;
+      }
+      .mobile-action-bar a:first-child,
+      .mobile-action-bar .mobile-price {
+        background:
+          linear-gradient(135deg, rgba(47,103,223,0.82), rgba(200,21,48,0.82));
+        border-color: rgba(244,246,250,0.18);
+      }
+      .footer {
+        padding-bottom: calc(88px + env(safe-area-inset-bottom)) !important;
+      }
+    }
+
+    @media (max-width: 390px) {
+      .mobile-action-bar {
+        grid-template-columns: 1fr 0.74fr 1fr;
+      }
+      .mobile-action-bar a {
+        font-size: 0.78rem;
+      }
+    }
+
+    @media (max-width: 720px) and (max-height: 780px) {
+      .hero {
+        min-height: 100svh !important;
+        justify-content: flex-start !important;
+        padding-top: 96px !important;
+        padding-bottom: 96px !important;
+      }
+      .hero-title {
+        font-size: clamp(3.25rem, 15vw, 3.9rem) !important;
+      }
+      .lead-offer {
+        margin-bottom: 14px;
+      }
+      .hero-copy {
+        display: none !important;
+      }
+      .hero-address-link {
+        display: none !important;
+      }
+    }
   </style>
 </head>
 <body>
@@ -3193,7 +3603,22 @@
       <span class="line"><span data-i18n="heroL3">Your</span></span>
       <span class="line"><span class="red" data-i18n="heroL4">Day.</span></span>
     </h1>
-    <p class="hero-copy serif" data-i18n="heroCopy">Affordable new and refurbished batteries, load-tested and installed fast in Houston.</p>
+    <div class="lead-offer" data-hover aria-label="Battery options from 65 dollars">
+      <div class="offer-battery" aria-hidden="true">
+        <span class="battery-post post-left"></span>
+        <span class="battery-post post-right"></span>
+        <span class="battery-body">
+          <span class="battery-brand">TDB</span>
+          <span class="battery-bars"><i></i><i></i><i></i><i></i></span>
+        </span>
+      </div>
+      <div class="lead-price">
+        <span class="lead-price-label" data-i18n="priceLabel">Battery options from</span>
+        <span class="lead-price-value">$65</span>
+        <span class="lead-price-copy" data-i18n="priceSub">Tested, installed, and explained fast.</span>
+      </div>
+    </div>
+    <p class="hero-copy serif" data-i18n="heroCopy">Battery options from $65, tested and installed fast near Hobby Airport.</p>
     <div class="hero-actions">
       <a class="btn solid" href="tel:7134856592" data-i18n="callBtn" data-hover>Call (713) 485-6592</a>
       <a class="btn" href="https://www.google.com/maps/dir/?api=1&destination=Texas%20Discount%20Battery%20Co.%2C%207423%20Airport%20Blvd%2C%20Houston%2C%20TX%2077061" target="_blank" rel="noreferrer" data-directions-link data-i18n="directionsBtn" data-hover>Get Directions</a>
@@ -3536,6 +3961,12 @@
     </div>
   </footer>
 
+  <div class="mobile-action-bar" aria-label="Quick actions">
+    <a href="tel:7134856592" data-i18n="mobileCall">Call Now</a>
+    <a class="mobile-price" href="#service" data-i18n="mobilePrice">$65</a>
+    <a href="https://www.google.com/maps/dir/?api=1&destination=Texas%20Discount%20Battery%20Co.%2C%207423%20Airport%20Blvd%2C%20Houston%2C%20TX%2077061" target="_blank" rel="noreferrer" data-directions-link data-i18n="mobileDirections">Directions</a>
+  </div>
+
   <script>
     const SUPPORTED_LANGS = ["en", "es"];
 
@@ -3587,7 +4018,12 @@
         navReviews: "Reviews",
         navVisit: "Visit",
         heroAddress: "7423 Airport Blvd, Houston, TX 77061",
-        heroCopy: "Battery trouble feels urgent. Pull up near Hobby Airport for a tested battery, a clear answer, and free install with purchase.",
+        heroCopy: "Battery options from $65, tested and installed fast near Hobby Airport. Call or pull up for a clear answer.",
+        priceLabel: "Battery options from",
+        priceSub: "Tested, installed, and explained fast.",
+        mobileCall: "Call Now",
+        mobilePrice: "$65",
+        mobileDirections: "Directions",
         openNow: "Open Now",
         closed: "Closed",
         closes: "Closes 6:00 PM",
@@ -3605,8 +4041,8 @@
         ratingSub: "800+ neighbors",
         statusLabel: "Status",
         serviceKicker: "Straight answers",
-        serviceTitle: ["Decide", "in", "minutes."],
-        serviceLede: "A calmer path from dead battery to drive-away: clear testing, honest options, and the install handled on the spot.",
+        serviceTitle: ["Pick", "the right", "battery."],
+        serviceLede: "A simple path from dead battery to drive-away: test first, see the price, get it installed, and leave with the right fix.",
         specKicker: "On the bench",
         specSub: "Average rating across 800+ real customer reviews",
         specHeadline: "Every battery is tested before it touches your hood.",
@@ -3614,7 +4050,7 @@
         answersTitle: ["Found for", "the right", "reason."],
         answersLede: "For the searches people actually make when the car will not start, the airport run is waiting, or the budget needs a smart fix.",
         reviewKicker: "Real reviews",
-        reviewsTitle: ["Eight hundred", "neighbors,", "five-point-oh."],
+        reviewsTitle: ["800+", "Real", "Reviews."],
         reviewLede: "Real customers keep saying the same thing: fast, fair, kind, and honest.",
         crewKicker: "Names people remember",
         crewTitle: ["Ask for them", "by name."],
@@ -3635,20 +4071,20 @@
         mapHere: "You Are Here",
         footerBuilt: "Built in Houston, Texas",
         today: "Today",
-        marquee: ["New Batteries", "Used Batteries", "Free Install", "Alternator Check", "Warranty Included", "Auto \u00b7 Marine \u00b7 Golf", "Motorcycle \u00b7 ATV \u00b7 Commercial"],
+        marquee: ["Batteries from $65", "New Batteries", "Used Batteries", "Free Install", "Alternator Check", "Warranty Included", "Auto \u00b7 Marine \u00b7 Golf", "Motorcycle \u00b7 ATV \u00b7 Commercial"],
         services: [
-          ["New Batteries", "Fresh stock for automotive, marine, golf cart, motorcycle, ATV, commercial, and high-output audio needs."],
-          ["Used and Refurbished", "Inspected, recharged, load-tested, and warrantied options for drivers who need the smartest affordable fix."],
-          ["Free Install", "Old battery out, terminals cleaned, new battery secured, alternator checked, and you are back on the road fast."]
+          ["$65 Battery Options", "Affordable tested options available with free install when you buy."],
+          ["Test First", "Voltage, load, and alternator checks before you spend money."],
+          ["Installed Fast", "Old battery out, terminals cleaned, new battery secured, and you are back on the road."]
         ],
         stats: [
-          ["5 min", "Average install time from pull-up to drive-away"],
-          ["$0", "Hidden fees. Installation is always included."],
+          ["$65", "Battery options available for budget-conscious drivers"],
+          ["$0", "Installation is included with purchase"],
           ["800+", "Customers who mention fair prices and kind service"]
         ],
         answers: [
           ["Battery place near me", "Near Hobby Airport.", "Texas Discount Battery Co. is at 7423 Airport Blvd in Southeast Houston, right by Hobby Airport for nearby drivers who need help fast."],
-          ["Used car battery Houston", "Affordable options.", "Ask about new, used, and refurbished batteries that are inspected, recharged, load-tested, and backed by a warranty."],
+          ["Used car battery Houston", "Options from $65.", "Ask about new, used, and refurbished batteries that are inspected, recharged, load-tested, and backed by a warranty."],
           ["Battery install Houston", "Install included.", "The team removes the old battery, cleans the terminals, secures the replacement, and checks the alternator with purchase."],
           ["Battery test and alternator check", "Know the real issue.", "Pull up for a voltage check, load test, and alternator check before spending money on the wrong part."],
           ["Auto, marine, golf, moto", "More than cars.", "Ask about automotive, truck, marine, golf cart, motorcycle, ATV, commercial, and high-output audio battery needs."],
@@ -3677,7 +4113,7 @@
         process: [
           ["01", "Pull Up", "Roll into 7423 Airport Blvd. No appointment, no waiting room politics. They come to the car.", "0:00"],
           ["02", "Quick Test", "Voltage check, load test, and alternator scan so you know what is actually wrong.", "+2 min"],
-          ["03", "Pick Your Price", "New, refurbished, or core exchange. Every option is explained plainly.", "+4 min"],
+          ["03", "Pick Your Price", "Battery options from $65, plus new, refurbished, or core exchange choices explained plainly.", "+4 min"],
           ["04", "Free Install", "Old battery out, terminals cleaned, new one secured, alternator verified.", "+9 min"],
           ["05", "Drive On", "Warranty handled, number saved, and the day gets moving again.", "+10 min"]
         ],
@@ -3705,7 +4141,12 @@
         navReviews: "Rese\u00f1as",
         navVisit: "Vis\u00edtanos",
         heroAddress: "7423 Airport Blvd, Houston, TX 77061",
-        heroCopy: "Cuando la bater\u00eda falla, urge resolver. Llega cerca del Aeropuerto Hobby por una prueba clara e instalaci\u00f3n gratis con tu compra.",
+        heroCopy: "Opciones de bater\u00eda desde $65, probadas e instaladas r\u00e1pido cerca del Aeropuerto Hobby.",
+        priceLabel: "Opciones desde",
+        priceSub: "Probada, instalada y explicada r\u00e1pido.",
+        mobileCall: "Llamar",
+        mobilePrice: "$65",
+        mobileDirections: "Llegar",
         openNow: "Abierto Ahora",
         closed: "Cerrado",
         closes: "Cerramos a las 6:00 PM",
@@ -3723,8 +4164,8 @@
         ratingSub: "M\u00e1s de 800 vecinos",
         statusLabel: "Estado",
         serviceKicker: "Respuestas claras",
-        serviceTitle: ["Decides", "en", "minutos."],
-        serviceLede: "Un camino m\u00e1s tranquilo desde una bater\u00eda muerta hasta salir manejando: prueba clara, opciones honestas e instalaci\u00f3n al momento.",
+        serviceTitle: ["Escoge", "la bater\u00eda", "correcta."],
+        serviceLede: "Un camino simple desde una bater\u00eda muerta hasta salir manejando: primero la prueba, luego el precio, instalaci\u00f3n incluida y la soluci\u00f3n correcta.",
         specKicker: "En el taller",
         specSub: "Calificaci\u00f3n promedio en m\u00e1s de 800 rese\u00f1as reales",
         specHeadline: "Cada bater\u00eda se prueba antes de tocar tu carro.",
@@ -3732,7 +4173,7 @@
         answersTitle: ["Te encuentran", "por la", "raz\u00f3n correcta."],
         answersLede: "Para las b\u00fasquedas que la gente hace cuando el carro no prende, el viaje al aeropuerto espera o el presupuesto necesita una soluci\u00f3n inteligente.",
         reviewKicker: "Rese\u00f1as reales",
-        reviewsTitle: ["Ochocientos", "vecinos,", "cinco de cinco."],
+        reviewsTitle: ["800+", "Rese\u00f1as", "Reales."],
         reviewLede: "Clientes reales repiten lo mismo: r\u00e1pidos, justos, amables y honestos.",
         crewKicker: "Nombres que se recuerdan",
         crewTitle: ["Pregunta por", "ellos."],
@@ -3753,20 +4194,20 @@
         mapHere: "Est\u00e1s Aqu\u00ed",
         footerBuilt: "Hecho en Houston, Texas",
         today: "Hoy",
-        marquee: ["Bater\u00edas Nuevas", "Bater\u00edas Usadas", "Instalaci\u00f3n Gratis", "Revisi\u00f3n de Alternador", "Garant\u00eda Incluida", "Auto \u00b7 Lancha \u00b7 Golf", "Moto \u00b7 ATV \u00b7 Comercial"],
+        marquee: ["Bater\u00edas desde $65", "Bater\u00edas Nuevas", "Bater\u00edas Usadas", "Instalaci\u00f3n Gratis", "Revisi\u00f3n de Alternador", "Garant\u00eda Incluida", "Auto \u00b7 Lancha \u00b7 Golf", "Moto \u00b7 ATV \u00b7 Comercial"],
         services: [
-          ["Bater\u00edas Nuevas", "Inventario fresco para auto, lancha, carrito de golf, moto, cuatrimoto, comercial y audio de alta potencia."],
-          ["Usadas y Reparadas", "Opciones revisadas, recargadas, probadas y con garant\u00eda para quien necesita una soluci\u00f3n econ\u00f3mica."],
-          ["Instalaci\u00f3n Gratis", "Quitan la vieja, limpian los bornes, ponen la nueva, revisan el alternador y sales r\u00e1pido."]
+          ["Opciones desde $65", "Opciones probadas y econ\u00f3micas con instalaci\u00f3n gratis al comprar."],
+          ["Prueba Primero", "Revisan voltaje, carga y alternador antes de que gastes dinero."],
+          ["Instalado R\u00e1pido", "Quitan la vieja, limpian bornes, aseguran la nueva y sales manejando."]
         ],
         stats: [
-          ["5 min", "Tiempo promedio desde que llegas hasta que sales"],
-          ["$0", "Cargos ocultos. La instalaci\u00f3n siempre va incluida."],
+          ["$65", "Opciones de bater\u00eda para presupuestos claros"],
+          ["$0", "Instalaci\u00f3n incluida con tu compra"],
           ["800+", "Clientes que hablan de buenos precios y buen trato"]
         ],
         answers: [
           ["Tienda de bater\u00edas cerca de m\u00ed", "Cerca del Aeropuerto Hobby.", "Texas Discount Battery Co. est\u00e1 en 7423 Airport Blvd en el sureste de Houston, junto al Aeropuerto Hobby, para conductores que necesitan ayuda r\u00e1pida."],
-          ["Bater\u00eda usada en Houston", "Opciones econ\u00f3micas.", "Pregunta por bater\u00edas nuevas, usadas y reparadas que se revisan, recargan, prueban con carga y salen con garant\u00eda."],
+          ["Bater\u00eda usada en Houston", "Opciones desde $65.", "Pregunta por bater\u00edas nuevas, usadas y reparadas que se revisan, recargan, prueban con carga y salen con garant\u00eda."],
           ["Instalaci\u00f3n de bater\u00eda Houston", "Instalaci\u00f3n incluida.", "El equipo quita la bater\u00eda vieja, limpia los bornes, asegura el reemplazo y revisa el alternador con tu compra."],
           ["Prueba de bater\u00eda y alternador", "Sabe qu\u00e9 est\u00e1 fallando.", "Llegas para revisar voltaje, prueba de carga y alternador antes de gastar en la pieza equivocada."],
           ["Auto, lancha, golf, moto", "M\u00e1s que carros.", "Pregunta por bater\u00edas para auto, troca, lancha, carrito de golf, moto, ATV, comercial y audio de alta potencia."],
@@ -3795,7 +4236,7 @@
         process: [
           ["01", "Llegas", "Ll\u00e9gale al 7423 Airport Blvd. Sin cita y sin sala de espera. Salen hasta tu carro.", "0:00"],
           ["02", "Te Revisan", "Voltaje, prueba de carga y alternador para saber qu\u00e9 est\u00e1 pasando de verdad.", "+2 min"],
-          ["03", "Escoges Precio", "Nueva, reparada o intercambio. Te explican cada opci\u00f3n con claridad.", "+4 min"],
+          ["03", "Escoges Precio", "Opciones desde $65, adem\u00e1s de nueva, reparada o intercambio explicado con claridad.", "+4 min"],
           ["04", "Instalan Gratis", "Sacan la vieja, limpian bornes, fijan la nueva y revisan el alternador.", "+9 min"],
           ["05", "A Manejar", "Garant\u00eda lista, n\u00famero guardado y tu d\u00eda vuelve a moverse.", "+10 min"]
         ],
