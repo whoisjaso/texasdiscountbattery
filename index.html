@@ -369,6 +369,11 @@
       max-height: 46vh;
       filter: drop-shadow(0 34px 80px rgba(0,0,0,0.55));
     }
+    .loader-card-fill {
+      fill: rgba(244,246,250,0.96);
+      filter: drop-shadow(0 0 26px rgba(244,246,250,0.18));
+      will-change: width;
+    }
     .loader-logo-photo {
       opacity: 0;
       filter: grayscale(1) contrast(1.1);
@@ -3712,21 +3717,36 @@
     .offer-stage {
       height: 198px !important;
       display: block;
-      overflow: hidden !important;
+      overflow: visible !important;
       transform-style: preserve-3d;
       border-radius: 8px;
-      background:
-        radial-gradient(circle at 48% 58%, rgba(47,103,223,0.18), transparent 62%),
-        linear-gradient(180deg, #020710, #040812);
-      box-shadow:
-        inset 0 1px 0 rgba(244,246,250,0.05),
-        inset 0 -32px 48px rgba(0,0,0,0.26);
+      background: transparent;
+      box-shadow: none;
+      text-decoration: none;
+      cursor: pointer;
     }
 
     .offer-stage::before {
-      inset: 54% 9% -8% !important;
-      background: radial-gradient(ellipse, rgba(47,103,223,0.28), rgba(239,36,72,0.12) 45%, transparent 72%) !important;
-      filter: blur(22px) !important;
+      inset: 50% 7% 2% !important;
+      z-index: -2;
+      background: radial-gradient(ellipse, rgba(47,103,223,0.36), rgba(239,36,72,0.16) 42%, transparent 76%) !important;
+      filter: blur(30px) !important;
+      opacity: 0.78;
+      transition: opacity 0.34s var(--ease-out), transform 0.34s var(--ease-out), filter 0.34s var(--ease-out);
+    }
+
+    .offer-stage::after {
+      content: "";
+      position: absolute;
+      inset: 16px 8px;
+      z-index: -1;
+      border-radius: 50%;
+      background:
+        radial-gradient(ellipse at 45% 48%, rgba(244,246,250,0.08), transparent 38%),
+        radial-gradient(ellipse at 52% 74%, rgba(47,103,223,0.26), transparent 64%);
+      filter: blur(16px);
+      opacity: 0.5;
+      transition: opacity 0.34s var(--ease-out), transform 0.34s var(--ease-out), filter 0.34s var(--ease-out);
     }
 
     .hero-battery-object {
@@ -3740,8 +3760,8 @@
       object-fit: contain;
       object-position: center;
       filter:
-        drop-shadow(0 22px 30px rgba(0,0,0,0.34))
-        drop-shadow(0 0 22px rgba(47,103,223,0.18));
+        drop-shadow(0 24px 30px rgba(0,0,0,0.38))
+        drop-shadow(0 0 24px rgba(47,103,223,0.24));
       transform:
         translate(-50%, -50%)
         translateX(var(--battery-x, 0px))
@@ -3749,18 +3769,42 @@
         rotateZ(var(--battery-rz, -1deg))
         scale(var(--battery-scale, 1));
       transform-origin: 50% 64%;
-      transition: transform 0.42s var(--ease-out), filter 0.42s var(--ease-out);
+      transition: transform 0.42s var(--ease-out), filter 0.42s var(--ease-out), opacity 0.42s var(--ease-out);
       will-change: transform;
       user-select: none;
       -webkit-user-drag: none;
     }
 
     @media (pointer: fine) {
-      .lead-offer:hover .hero-battery-object {
-        --battery-lift: -4px;
+      .offer-stage:hover,
+      .offer-stage:focus-visible {
+        cursor: pointer;
+      }
+      .offer-stage:hover::before,
+      .offer-stage:focus-visible::before {
+        opacity: 1;
+        filter: blur(38px) !important;
+        transform: scale(1.08) translateY(-4px);
+      }
+      .offer-stage:hover::after,
+      .offer-stage:focus-visible::after {
+        opacity: 1;
+        filter: blur(22px);
+        transform: scale(1.08) translateY(-5px);
+      }
+      .offer-stage:hover .hero-battery-object,
+      .offer-stage:focus-visible .hero-battery-object {
+        --battery-lift: -11px;
+        --battery-scale: 1.045;
+        --battery-rz: -0.35deg;
         filter:
-          drop-shadow(0 28px 34px rgba(0,0,0,0.38))
-          drop-shadow(0 0 30px rgba(47,103,223,0.24));
+          drop-shadow(0 34px 40px rgba(0,0,0,0.46))
+          drop-shadow(-13px 0 36px rgba(47,103,223,0.44))
+          drop-shadow(13px 0 36px rgba(239,36,72,0.36));
+      }
+      .offer-stage:focus-visible {
+        outline: 2px solid rgba(244,246,250,0.7);
+        outline-offset: 7px;
       }
     }
 
@@ -3817,6 +3861,7 @@
             <rect id="loaderMaskFeather" x="-120" y="0" width="120" height="887" fill="url(#loaderMaskFade)"></rect>
           </mask>
         </defs>
+        <rect id="loaderCardFill" class="loader-card-fill" x="0" y="0" width="0" height="887" rx="22" />
         <rect width="1774" height="887" rx="22" fill="none" stroke="rgba(192,200,212,0.14)" />
         <image class="loader-logo-photo" href="assets/logo-nav-clean.png" x="0" y="0" width="1774" height="887" preserveAspectRatio="xMidYMid meet" />
         <image class="loader-outline" href="assets/logo-nav-clean.png" x="0" y="0" width="1774" height="887" preserveAspectRatio="xMidYMid meet" filter="url(#logoEdge)" />
@@ -3892,9 +3937,9 @@
       <span class="line"><span class="red" data-i18n="heroL4">Day.</span></span>
     </h1>
     <div class="lead-offer" data-hover aria-label="Battery options from 65 dollars">
-      <div class="offer-stage" data-battery-stage aria-hidden="true">
-        <img class="hero-battery-object" src="assets/battery-cartoon-hero-v3.png" alt="" />
-      </div>
+      <a class="offer-stage" href="#answers" data-battery-stage data-hover aria-label="View battery answers and service information">
+        <img class="hero-battery-object" src="assets/battery-cartoon-hero-cutout.png" alt="" />
+      </a>
       <div class="lead-price">
         <span class="lead-price-label" data-i18n="priceLabel">Battery options from</span>
         <span class="lead-price-value">$65</span>
@@ -4857,6 +4902,7 @@
 
     function initLoader() {
       const fill = $("#loaderFill");
+      const cardFill = $("#loaderCardFill");
       const solid = $("#loaderMaskSolid");
       const feather = $("#loaderMaskFeather");
       const edge = $("#loaderEdge");
@@ -4875,6 +4921,7 @@
         const sweep = logoWidth * eased;
         const solidWidth = Math.max(0, Math.min(logoWidth, sweep - featherWidth * 0.5));
         const featherX = Math.max(-featherWidth, Math.min(logoWidth, sweep - featherWidth * 0.5));
+        cardFill.setAttribute("width", Math.max(0, Math.min(logoWidth, sweep)).toFixed(2));
         solid.setAttribute("width", solidWidth.toFixed(2));
         feather.setAttribute("x", featherX.toFixed(2));
         edge.setAttribute("x", Math.max(0, Math.min(logoWidth - 5, sweep - 2)).toFixed(2));
@@ -4972,6 +5019,7 @@
       const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
       let dragging = false;
       let startX = 0;
+      let lastDelta = 0;
       let currentY = -10;
       let idleFrame = 0;
 
@@ -4993,6 +5041,7 @@
       stage.addEventListener("pointerdown", (event) => {
         dragging = true;
         startX = event.clientX;
+        lastDelta = 0;
         stage.setPointerCapture?.(event.pointerId);
       });
 
@@ -5000,6 +5049,7 @@
         const rect = stage.getBoundingClientRect();
         if (dragging) {
           const dx = event.clientX - startX;
+          lastDelta = dx;
           currentY = Math.max(-24, Math.min(16, -10 + dx * 0.08));
           setTilt(0, currentY, -1, -3);
           return;
@@ -5019,12 +5069,19 @@
         });
       });
 
+      stage.addEventListener("click", (event) => {
+        if (Math.abs(lastDelta) > 8) {
+          event.preventDefault();
+          lastDelta = 0;
+        }
+      });
+
       if (!reduceMotion) {
         const float = () => {
           idleFrame += 1;
           if (!dragging && !stage.matches(":hover")) {
-            const ry = currentY + Math.sin(idleFrame * 0.018) * 1.2;
-            const lift = Math.sin(idleFrame * 0.024) * -1.6;
+            const ry = currentY + Math.sin(idleFrame * 0.018) * 1.8;
+            const lift = -3 + Math.sin(idleFrame * 0.024) * -2.8;
             setTilt(0, ry, -1, lift);
           }
           requestAnimationFrame(float);
